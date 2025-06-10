@@ -1,0 +1,2 @@
+C:/Users/vipul/OneDrive/Desktop/flutter_mvvm/noteswap/android/app/.cxx/Debug/5y59612o/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/vipul/OneDrive/Desktop/flutter_mvvm/noteswap/android/app/.cxx/Debug/5y59612o/x86_64/CMakeFiles/rebuild_cache.dir
