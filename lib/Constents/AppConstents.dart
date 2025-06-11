@@ -53,6 +53,11 @@ class AppConstants {
   static const String container3Icon = "assets/solar_rocket-bold.svg";
   static const String sortIcon = "assets/Vector5.png";
 
+  static const String homeIcon = 'assets/home3.svg';
+  static const String exploreIcon = 'assets/Vector.svg';
+  static const String addFile = 'assets/notification.svg';
+  static const String userIcon = 'assets/Usersvg.svg';
+
 
   // Icons
   static const String groupIcon = "assets/home3.svg";

@@ -1,3 +1,4 @@
+import 'package:NotesNest/Constents/AppConstents.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../ViewModels/NavController.dart';
@@ -38,11 +39,11 @@ class BottomNavBar extends StatelessWidget {
               onTap: controller.changeIndex,
               items: [
                 BottomNavigationBarItem(
-                  icon: BottomNavItemWidget(assetPath: 'assets/home3.svg', index: 0),
+                  icon: BottomNavItemWidget(assetPath: AppConstants.homeIcon, index: 0),
                   label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: BottomNavItemWidget(assetPath: 'assets/Vector.svg', index: 1),
+                  icon: BottomNavItemWidget(assetPath: AppConstants.exploreIcon, index: 1),
                   label: '',
                 ),
                 BottomNavigationBarItem(
@@ -50,11 +51,11 @@ class BottomNavBar extends StatelessWidget {
                   label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: BottomNavItemWidget(assetPath: 'assets/notification.svg', index: 3),
+                  icon: BottomNavItemWidget(assetPath: AppConstants.addFile, index: 3),
                   label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: BottomNavItemWidget(assetPath: 'assets/Usersvg.svg', index: 4),
+                  icon: BottomNavItemWidget(assetPath: AppConstants.userIcon, index: 4),
                   label: '',
                 ),
               ],
