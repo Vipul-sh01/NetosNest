@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:NotesNest/Constents/AppConstents.dart';
 import 'package:NotesNest/ViewModels/NavController.dart';
-import './BottomNavItemWidget.dart';
+import './BottomNavitemWidget.dart';
 
 class BottomNavBar extends StatelessWidget {
   final BottomNavController controller = Get.put(BottomNavController());
