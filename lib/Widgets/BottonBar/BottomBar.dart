@@ -1,9 +1,8 @@
-import 'package:NotesNest/Constents/AppConstents.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../ViewModels/NavController.dart';
-import 'BottomNavItemWidget.dart';
-
+import 'package:NotesNest/Constents/AppConstents.dart';
+import 'package:NotesNest/ViewModels/NavController.dart';
+import './BottomNavItemWidget.dart';
 
 class BottomNavBar extends StatelessWidget {
   final BottomNavController controller = Get.put(BottomNavController());
@@ -18,7 +17,7 @@ class BottomNavBar extends StatelessWidget {
           topLeft: Radius.circular(24),
           topRight: Radius.circular(24),
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             blurRadius: 10,
@@ -46,8 +45,8 @@ class BottomNavBar extends StatelessWidget {
                   icon: BottomNavItemWidget(assetPath: AppConstants.exploreIcon, index: 1),
                   label: '',
                 ),
-                BottomNavigationBarItem(
-                  icon: const SizedBox.shrink(), // placeholder
+                const BottomNavigationBarItem(
+                  icon: SizedBox.shrink(), // placeholder for center add button
                   label: '',
                 ),
                 BottomNavigationBarItem(
@@ -65,7 +64,7 @@ class BottomNavBar extends StatelessWidget {
             Positioned(
               top: -10,
               child: GestureDetector(
-                onTap: () => controller.changeIndex(2),
+                onTap: () => controller.changeIndex(2), // Middle button (e.g., add note)
                 child: Container(
                   height: 64,
                   width: 64,
@@ -74,7 +73,7 @@ class BottomNavBar extends StatelessWidget {
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 2),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Icon(Icons.add, color: Colors.white, size: 52),
                   ),
                 ),
