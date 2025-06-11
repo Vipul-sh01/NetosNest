@@ -21,6 +21,7 @@ class NoteService {
       final existingModules = List<Map<String, dynamic>>.from(existingData['modules'] ?? []);
 
       // Avoid duplicates
+      
       for (final newModule in note.modules) {
         if (!existingModules.any((m) => m['fileUrl'] == newModule.fileUrl)) {
           existingModules.add(newModule.toJson());
