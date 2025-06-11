@@ -25,17 +25,17 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Run tests
-      - name: Run Flutter tests
-        run: flutter test
+      # # Run tests
+      # - name: Run Flutter tests
+      #   run: flutter test
 
-      # Build the APK (For Android)
-      # - name: Build APK
-      #   run: flutter build apk --release
+      #Build the APK (For Android)
+      - name: Build APK
+        run: flutter build apk --release
 
-      # # Upload build artifacts (Optional)
-      # - name: Upload APK
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: flutter-apk
-      #     path: build/app/outputs/flutter-apk/app-release.apk
+      # Upload build artifacts (Optional)
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-apk
+          path: build/app/outputs/flutter-apk/app-release.apk

@@ -1,30 +1,39 @@
-import 'package:NotesNest/main.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:NotesNest/Views/SplashScreen.dart';
+import 'package:NotesNest/Views/Onboarding/OnboardingScreen.dart';
+import 'package:NotesNest/main.dart' as app;
 
 void main() {
-  testWidgets('NotesNest app smoke test', (WidgetTester tester) async {
-    // Build the app and trigger a frame
-    await tester.pumpWidget(const MyApp());
+  TestWidgetsFlutterBinding.ensureInitialized();
 
-    // Wait for animations or splash screen to settle (if needed)
+  testWidgets('App starts and shows SplashScreen', (WidgetTester tester) async {
+    await tester.pumpWidget(const app.MyApp());
+
+    // Wait for timer to complete (simulate 3 seconds)
+    await tester.pump(const Duration(seconds: 3));
     await tester.pumpAndSettle();
 
-    // Check if the SplashScreen or app title is shown
-    expect(find.text('NotesNest'), findsOneWidget); // Adjust text as needed
+    expect(find.byType(SplashScreen), findsOneWidget);
+  });
 
-    // Optionally check for the presence of a FAB if it exists on the initial screen
-    if (find.byType(FloatingActionButton).evaluate().isNotEmpty) {
-      expect(find.byType(FloatingActionButton), findsOneWidget);
+  testWidgets('Navigates to OnboardingScreen', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      GetMaterialApp(
+        initialRoute: '/',
+        getPages: [
+          GetPage(name: '/', page: () => SplashScreen()),
+          GetPage(name: '/onboardingScreen', page: () => OnboardingScreen()),
+        ],
+      ),
+    );
 
-      // Simulate tapping the FAB
-      await tester.tap(find.byType(FloatingActionButton));
-      await tester.pumpAndSettle();
+    // Simulate timer delay if SplashScreen uses one
+    await tester.pump(const Duration(seconds: 3));
+    Get.toNamed('/onboardingScreen');
+    await tester.pumpAndSettle();
 
-      // Check if "Add Note" screen/dialog appears (update text if needed)
-      expect(find.text('Add Note'), findsOneWidget);
-    } else {
-      print('FloatingActionButton not found on initial screen. Skipping FAB test.');
-    }
+    expect(find.byType(OnboardingScreen), findsOneWidget);
   });
 }
