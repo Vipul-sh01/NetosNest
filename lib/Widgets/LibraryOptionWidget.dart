@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../Constents/AppConstents.dart';
 import '../Constents/AppStyles.dart';
+import '../Utility/ResponsiveUtils.dart';
 import '../ViewModels/DarkModeViewModels.dart';
 
 class LibraryOptionWidget extends StatelessWidget {
@@ -21,19 +22,19 @@ class LibraryOptionWidget extends StatelessWidget {
       ()=> GestureDetector(
         onTap: onTap,
         child: Container(
-          height: AppConstants.containerHeight,
-          width: AppConstants.containerWidth,
-          padding: EdgeInsets.only(left: AppConstants.paddingLeft),
+          height: ResponsiveUtils.height(0.07),
+          width: ResponsiveUtils.width(0.30),
+          padding: ResponsiveUtils.paddingOnly(leftPercent: 0.01, rightPercent: 0.01),
           decoration: BoxDecoration(
             color: lightModeController.isLightMode.value ? AppConstants.darkContainerColor : AppConstants.lightContainerColor,
-            borderRadius: BorderRadius.circular(AppConstants.borderRadius),
+            borderRadius: ResponsiveUtils.circular(0.02)
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: AppConstants.iconSizes,
-                height: AppConstants.iconSizes,
+                width: ResponsiveUtils.iconSize(0.09),
+                height: ResponsiveUtils.iconSize(0.09),
                 child: SvgPicture.asset(
                   iconPath,
                   fit: BoxFit.contain,
@@ -43,7 +44,7 @@ class LibraryOptionWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: AppConstants.spacingBetweenIconText),
+              SizedBox(width: ResponsiveUtils.width(0.02)),
               Expanded(
                 child: Text(
                   label,

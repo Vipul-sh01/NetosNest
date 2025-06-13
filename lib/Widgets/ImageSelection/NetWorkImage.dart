@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Constents/AppConstents.dart';
 import '../../Models/NoteModel.dart';
+import '../../Utility/ResponsiveUtils.dart';
 import '../../Utility/showSnackbar.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 import '../../Views/dhsdh.dart'; // Remove if unused
@@ -34,29 +35,29 @@ class ImageContainers extends StatelessWidget {
         }
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8),
+        margin: ResponsiveUtils.marginSymmetric(horizontalPercent: 0.01),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: ResponsiveUtils.circular(0.02),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
-              blurRadius: 10,
-              offset: const Offset(2, 2),
+              blurRadius: ResponsiveUtils.blurRadius(0.025),
+              offset: ResponsiveUtils.shadowOffset(x: 0.001, y: 0.001),
             ),
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: ResponsiveUtils.circular(0.02),
           child: Image.network(
             imagePath,
             fit: BoxFit.fitWidth,
-            width: 120,
-            height: 160,
+            width: ResponsiveUtils.width(0.29),
+            height: ResponsiveUtils.height(0.19),
             loadingBuilder: (context, child, loadingProgress) {
               if (loadingProgress == null) return child;
               return Container(
-                width: 120,
-                height: 160,
+                width: ResponsiveUtils.width(0.29),
+                height: ResponsiveUtils.height(0.19),
                 alignment: Alignment.center,
                 child: CircularProgressIndicator(
                   value: loadingProgress.expectedTotalBytes != null
@@ -68,15 +69,20 @@ class ImageContainers extends StatelessWidget {
             },
             errorBuilder: (context, error, stackTrace) {
               return Container(
-                width: 120,
-                height: 160,
+                width: ResponsiveUtils.width(0.29),
+                height: ResponsiveUtils.height(0.19),
                 decoration: BoxDecoration(
                   color: lightModeController.isLightMode.value
                       ? AppConstants.darkContainerColor
                       : AppConstants.lightContainerColor,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: ResponsiveUtils.circular(0.02),
                 ),
-                child: const Icon(Icons.broken_image, size: 40, color: Colors.grey),
+                child: Icon(
+                  Icons.broken_image,
+                  size: ResponsiveUtils.iconSize(0.09),
+                  color: Colors.grey,
+                ),
+
               );
             },
           ),

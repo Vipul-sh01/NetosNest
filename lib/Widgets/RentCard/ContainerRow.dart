@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../Constents/AppConstents.dart';
+import '../../Utility/ResponsiveUtils.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 
 class ContainerRow extends StatelessWidget {
@@ -33,24 +34,24 @@ class ContainerRow extends StatelessWidget {
                     courseName ?? "CSE 2005",
                     style: TextStyle(
                       color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                      fontSize: 16,
+                      fontSize: ResponsiveUtils.fontSize(0.04),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: ResponsiveUtils.width(0.02)),
                   Container(
-                    width: 90,
-                    height: 22,
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    width: ResponsiveUtils.width(0.21),
+                    height: ResponsiveUtils.height(0.028),
+                    padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.01,verticalPercent: 0.0019),
                     decoration: BoxDecoration(
                       color: AppConstants.boxColor,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: ResponsiveUtils.circular(0.01),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         "SCOPE",
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 12,
+                          fontSize: ResponsiveUtils.fontSize(0.03),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -58,12 +59,12 @@ class ContainerRow extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: ResponsiveUtils.height(0.01)),
               Text(
                 text ?? '',
                 style: TextStyle(
                   color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                  fontSize: 24,
+                  fontSize: ResponsiveUtils.fontSize(0.056),
                 ),
                 softWrap: true,
               ),
@@ -71,11 +72,11 @@ class ContainerRow extends StatelessWidget {
           ),
         ),
         Container(
-          height: 100,
-          width: 170,
+          width: ResponsiveUtils.width(0.39),
+          height: ResponsiveUtils.height(0.11),
           decoration: BoxDecoration(
             color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: ResponsiveUtils.circular(0.02),
           ),
           alignment: Alignment.center,
           child: Row(
@@ -84,20 +85,20 @@ class ContainerRow extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: const [
+                children:  [
                   Text(
                     'Modules \nCovered',
                     style: TextStyle(
-                      fontSize: 26,
+                      fontSize: ResponsiveUtils.fontSize(0.056),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: ResponsiveUtils.width(0.02)),
               Text(
                 moduleText ?? '',
-                style: const TextStyle(
-                  fontSize: 50,
+                style: TextStyle(
+                  fontSize: ResponsiveUtils.fontSize(0.13),
                 ),
               ),
             ],

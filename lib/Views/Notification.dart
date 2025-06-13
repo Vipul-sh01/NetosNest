@@ -24,6 +24,7 @@ class NotificationScreen extends StatelessWidget {
         backgroundColor:
             lightModeController.isLightMode.value ? Colors.white : Colors.black,
         appBar: AppBar(
+          automaticallyImplyLeading: true,
           backgroundColor: lightModeController.isLightMode.value
               ? Colors.black
               : Colors.white,
@@ -37,6 +38,7 @@ class NotificationScreen extends StatelessWidget {
             AppConstants.noteSwapTexts,
             style: AppStyles.textStyleLargeBold,
           ),
+          elevation: 0,
           centerTitle: true,
           actions: [
             BackWidget(

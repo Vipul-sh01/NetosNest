@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 
 class PreviewImageWidget extends StatelessWidget {
@@ -24,7 +25,7 @@ class PreviewImageWidget extends StatelessWidget {
         child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: ResponsiveUtils.circular(0.05),
           ),
           child: Image.network(
             imageUrl,
@@ -43,7 +44,7 @@ class PreviewImageWidget extends StatelessWidget {
               return SizedBox(
                 width: width,
                 height: height,
-                child: const Center(child: Icon(Icons.broken_image, size: 50)),
+                child: Center(child: Icon(Icons.broken_image, size: ResponsiveUtils.iconSize(0.067))),
               );
             },
           ),

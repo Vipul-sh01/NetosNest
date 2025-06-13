@@ -1,45 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../Constents/AppConstents.dart';
 import '../../Utility/CourseEnum.dart';
-import '../../ViewModels/DarkModeViewModels.dart'; // Assuming the LightModeController is defined here
+import '../../ViewModels/DarkModeViewModels.dart';
 import '../../ViewModels/filter.dart';
 import '../../Views/YourScreen.dart';
+import '../../Utility/ResponsiveUtils.dart';
 
 void showFilterSheet(BuildContext context, NotesFilterController controller,
     LightModeController lightModeController) {
   showModalBottomSheet(
     context: context,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(ResponsiveUtils.width(0.03)),
+      ),
     ),
     builder: (_) {
       return Padding(
-        padding: const EdgeInsets.all(16),
+        padding: ResponsiveUtils.paddingAll(0.03),
         child: Obx(() {
-          // Get the current light mode value
           bool isLightMode = lightModeController.isLightMode.value;
 
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Title with dynamic color based on light mode
               Text(
                 "Filter Notes",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: ResponsiveUtils.fontSize(0.045),
                   fontWeight: FontWeight.bold,
                   color: isLightMode ? Colors.black : Colors.white,
                 ),
               ),
-              const SizedBox(height: 16),
-
-              // Dropdown from Enum
+              SizedBox(height: ResponsiveUtils.height(0.02)),
               DropdownButton<CourseName>(
                 value: controller.selectedCourse.value,
                 hint: Text(
                   "Select Course",
                   style: TextStyle(
+                    fontSize: ResponsiveUtils.fontSize(0.04),
                     color: isLightMode ? Colors.black : Colors.white,
                   ),
                 ),
@@ -50,6 +51,7 @@ void showFilterSheet(BuildContext context, NotesFilterController controller,
                     child: Text(
                       course.label,
                       style: TextStyle(
+                        fontSize: ResponsiveUtils.fontSize(0.04),
                         color: isLightMode ? Colors.black : Colors.white,
                       ),
                     ),
@@ -59,19 +61,23 @@ void showFilterSheet(BuildContext context, NotesFilterController controller,
                   controller.selectedCourse.value = value;
                 },
               ),
-
-              const SizedBox(height: 24),
+              SizedBox(height: ResponsiveUtils.height(0.02)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Reset button with dynamic color
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppConstants.boxColor,
+                      padding: ResponsiveUtils.paddingSymmetric(
+                          verticalPercent: 0.01, horizontalPercent: 0.08),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: ResponsiveUtils.circular(0.02),
+                      ),
                     ),
                     child: Text(
                       "Reset",
                       style: TextStyle(
+                        fontSize: ResponsiveUtils.fontSize(0.04),
                         color: Colors.white,
                       ),
                     ),
@@ -80,20 +86,24 @@ void showFilterSheet(BuildContext context, NotesFilterController controller,
                       Get.back();
                     },
                   ),
-                  // Apply button with dynamic color
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppConstants.boxColor,
+                      padding: ResponsiveUtils.paddingSymmetric(
+                          verticalPercent: 0.01, horizontalPercent: 0.08),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: ResponsiveUtils.circular(0.02)),
                     ),
                     child: Text(
                       "Apply",
                       style: TextStyle(
+                        fontSize: ResponsiveUtils.fontSize(0.04),
                         color: Colors.white,
                       ),
                     ),
                     onPressed: () {
                       controller.applyFilters();
-                      Get.to(YourPage());
+                      Get.to(() => YourPage());
                     },
                   ),
                 ],

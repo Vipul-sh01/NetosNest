@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Constents/AppConstents.dart';
 import '../Constents/AppStyles.dart';
+import '../Utility/ResponsiveUtils.dart';
 import '../ViewModels/DarkModeViewModels.dart';
 import '../ViewModels/ImageSectionViewModels.dart';
 import '../ViewModels/ThreeNoteViewModels.dart';
 import '../Widgets/BottonBar/BottomBar.dart';
 import '../Widgets/Buttons/BackWidgets.dart';
-import '../Widgets/Buttons/ButtonWidgets.dart';
-import '../Widgets/Feed/SearchWidgets.dart';
 import '../Widgets/ImageSelection/ImageSectionWidget.dart';
 import '../Widgets/ImageSelection/ImageSectionWidgetThree.dart';
 import '../Widgets/ImageSelection/ImageSectionWidgetTwo.dart';
@@ -30,6 +29,7 @@ class FeedScreen extends StatelessWidget {
         backgroundColor:
             lightModeController.isLightMode.value ? Colors.white : Colors.black,
         appBar: AppBar(
+          automaticallyImplyLeading: true,
           backgroundColor: lightModeController.isLightMode.value
               ? Colors.black
               : Colors.white,
@@ -43,6 +43,7 @@ class FeedScreen extends StatelessWidget {
             AppConstants.noteSwapTexts,
             style: AppStyles.textStyleLargeBold,
           ),
+          elevation: 0,
           centerTitle: true,
           actions: [
             BackWidget(
@@ -61,30 +62,22 @@ class FeedScreen extends StatelessWidget {
               NarrowContainer(
                 isLightMode: lightModeController.isLightMode.value,
               ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 56.0),
-                child: SearchWidgets(),
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 10.0),
+              SizedBox(height: ResponsiveUtils.height(0.02)),
+              Padding(padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.03),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Title: "Explore our Library"
                     Text(
                       "Explore our Library",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: ResponsiveUtils.fontSize(0.039),
                         fontWeight: FontWeight.bold,
                         color: lightModeController.isLightMode.value
                             ? Colors.black
                             : Colors.white,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: ResponsiveUtils.height(0.013)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -107,79 +100,45 @@ class FeedScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: ResponsiveUtils.height(0.013)),
                     Text(
                       "Explore the Departments",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: ResponsiveUtils.fontSize(0.039),
                         fontWeight: FontWeight.bold,
                         color: lightModeController.isLightMode.value
                             ? Colors.black
                             : Colors.white,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: ResponsiveUtils.height(0.013)),
                     ImageSectionWidget(controller: imageController),
+                    SizedBox(height: ResponsiveUtils.height(0.018)),
                     Text(
                       "GET HANDWRITTEN NOTES",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: ResponsiveUtils.fontSize(0.039),
                         fontWeight: FontWeight.bold,
                         color: lightModeController.isLightMode.value
                             ? Colors.black
                             : Colors.white,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: ResponsiveUtils.height(0.013)),
                     ImageSectionWidgetTwo(controller: imageController,),
+                    SizedBox(height: ResponsiveUtils.height(0.018)),
                     Text(
                       "SELL YOUR NOTES",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: ResponsiveUtils.fontSize(0.039),
                         fontWeight: FontWeight.bold,
                         color: lightModeController.isLightMode.value
                             ? Colors.black
                             : Colors.white,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: ResponsiveUtils.height(0.013)),
                     ImageSectionWidgetThree(controller: imageController),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 200,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: lightModeController.isLightMode.value
-                              ? AppConstants.darkContainerColor
-                              : AppConstants.lightContainerColor,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Can’t Find what your Looking For?",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: lightModeController.isLightMode.value
-                                    ? AppConstants.lightContainerColor
-                                    : AppConstants.darkContainerColor,
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                            SizedBox(
-                              width: 350,
-                              child: ButtonWidgets(
-                                onTap: () {},
-                                buttonText: 'Make a request !',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),

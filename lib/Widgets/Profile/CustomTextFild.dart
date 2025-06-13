@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,15 +17,15 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: ResponsiveUtils.paddingSymmetric(verticalPercent: 0.01),
       child: Row(
         children: [
           SizedBox(
-            width: 115,
+            width: ResponsiveUtils.width(0.23),
             child: Text(
               "$label:",
               style: TextStyle(
-                fontSize: 16,
+                fontSize:ResponsiveUtils.fontSize(0.035),
                 color: isDarkMode ? Colors.white : Colors.black,
               ),
             ),

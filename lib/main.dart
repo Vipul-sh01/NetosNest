@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'ViewModels/DarkModeViewModels.dart';
+import 'ViewModels/UserViewsModels/UserViewsModels.dart';
 import 'Views/Onboarding/OnboardingScreen.dart';
 import 'Views/SplashScreen.dart';
 
@@ -9,6 +10,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Get.put(LightModeController());
+  Get.lazyPut<AuthControllers>(() => AuthControllers());
   runApp(MyApp());
 }
 

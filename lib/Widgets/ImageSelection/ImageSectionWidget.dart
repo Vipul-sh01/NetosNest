@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Constents/AppConstents.dart';
+import '../../Utility/ResponsiveUtils.dart';
 import '../../ViewModels/ImageSectionViewModels.dart';
 import 'ImageContainer.dart';
 
@@ -25,7 +26,7 @@ class ImageSectionWidget extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 10),
+        SizedBox(height: ResponsiveUtils.height(0.01)),
         Obx(() {
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -33,15 +34,15 @@ class ImageSectionWidget extends StatelessWidget {
               3,
                   (index) => AnimatedContainer(
                 duration: Duration(milliseconds: 300),
-                margin: EdgeInsets.symmetric(horizontal: 4),
-                height: 8,
-                width: 8,
+                margin: ResponsiveUtils.marginSymmetric(horizontalPercent: 0.01),
+                height: ResponsiveUtils.height(0.01),
+                width: ResponsiveUtils.width(0.02),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: controller.currentPage.value == index ? AppConstants.darkContainerColor : Colors.transparent,
                   border: Border.all(
                     color: controller.currentPage.value == index ? AppConstants.darkContainerColor : AppConstants.iconNoteColors,
-                    width: 2,
+                    width: ResponsiveUtils.width(0.006),
                   ),
                 ),
               ),

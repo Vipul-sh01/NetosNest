@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../Constents/AppConstents.dart';
+import '../Utility/ResponsiveUtils.dart';
 import '../ViewModels/DarkModeViewModels.dart'; // Fixed incorrect import
 
 class ProfileAvatar extends StatelessWidget {
@@ -28,7 +29,7 @@ class ProfileAvatar extends StatelessWidget {
       onTap: onCameraTap,
       child: CircleAvatar(
         backgroundColor: lightModeController.isLightMode.value? Colors.black : Colors.grey,
-        radius: radius ?? 55.0,
+        radius: radius ?? ResponsiveUtils.radius(0.16),
         backgroundImage: isFileImage
             ? FileImage(File(imagePath))
             : AssetImage(AppConstants.defaultProfileImage, ) as ImageProvider,

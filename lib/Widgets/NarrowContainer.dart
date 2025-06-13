@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../Constents/AppConstents.dart';
+import '../Utility/ResponsiveUtils.dart';
 
 class NarrowContainer extends StatelessWidget {
   final bool isLightMode;
@@ -13,14 +14,14 @@ class NarrowContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppConstants.containerHeights,
+      height: ResponsiveUtils.height(0.02),
       width: double.infinity,
       decoration: BoxDecoration(
         color: isLightMode ? Colors.black : Colors.white,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(AppConstants.containerBorderRadius),
-          bottomRight: Radius.circular(AppConstants.profileContainerBorderRadius),
-        ),
+          borderRadius: ResponsiveUtils.borderRadiusOnly(
+            bottomRight: 0.04,
+            bottomLeft: 0.04,
+          )
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import '../Utility/ResponsiveUtils.dart';
 import '../ViewModels/DarkModeViewModels.dart';
 
 class InputField extends StatelessWidget {
@@ -33,7 +34,7 @@ class InputField extends StatelessWidget {
             ? const Icon(Icons.visibility_off, color: Colors.grey)
             : null,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: ResponsiveUtils.circular(0.02),
           borderSide: BorderSide.none,
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class DetailItemWidget extends StatelessWidget {
   const DetailItemWidget({
     super.key,
     required this.text,
-    required this.textOne, // Now it's a String, not RxString
+    required this.textOne,
     required this.isLightMode,
   });
 
@@ -22,23 +23,27 @@ class DetailItemWidget extends StatelessWidget {
           Text(
             text,
             style: TextStyle(
-              fontSize: 28,
+              fontSize: ResponsiveUtils.fontSize(0.059),
               fontWeight: FontWeight.bold,
               color: isLightMode ? Colors.black : Colors.white,
               shadows: [
                 Shadow(
-                  offset: const Offset(4, 4),
-                  blurRadius: 4,
+                  offset: Offset(
+                    ResponsiveUtils.width(0.01),
+                    ResponsiveUtils.height(0.01),
+                  ),
+                  blurRadius: ResponsiveUtils.radius(0.005),
                   color: isLightMode ? Colors.white30 : Colors.black26,
                 ),
               ],
+
             ),
           ),
           Spacer(),
           Text(
             textOne, // Directly using String
             style: TextStyle(
-              fontSize: 28,
+              fontSize: ResponsiveUtils.fontSize(0.059),
               fontWeight: FontWeight.bold,
               // color: isLightMode ? Colors.white30 : Colors.black26,
             ),

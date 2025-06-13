@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,20 +30,20 @@ class RentCardCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       ()=> Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: ResponsiveUtils.paddingAll(0.02),
         child: Container(
           width: double.infinity,
-          height: 300,
+          height: ResponsiveUtils.height(0.32),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: ResponsiveUtils.circular(0.02),
             color: lightModeController.isLightMode.value ? Colors.black : Colors.white,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: ResponsiveUtils.paddingAll(0.03),
             child: Column(
               children: [
                 ContainerRow(text: text, moduleText: moduleText, courseName: courseName,),
-                SizedBox(height: 15),
+                SizedBox(height: ResponsiveUtils.height(0.015)),
                 RentImage(imageUrl: imageUrl, onTap: () {Get.to(PdfViewerScreen(note: note,));  },)
               ],
             ),

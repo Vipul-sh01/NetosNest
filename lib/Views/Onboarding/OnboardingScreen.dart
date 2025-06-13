@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Constents/AppConstents.dart';
+import '../../Utility/ResponsiveUtils.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 import '../../ViewModels/OnboardingViewModels.dart';
 import '../../Widgets/Buttons/ButtonWidgets.dart';
@@ -35,9 +36,8 @@ class OnboardingScreen extends StatelessWidget {
                   (index) => buildDot(index, controller.currentPage.value),
             ),
           ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.all(35.0),
+          SizedBox(height: ResponsiveUtils.height(0.01)),
+          Padding(padding: ResponsiveUtils.paddingAll(0.08),
             child: ButtonWidgets(
               onTap: () {
                 Get.to(LoginScreen());
@@ -55,14 +55,14 @@ class OnboardingScreen extends StatelessWidget {
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      width: currentIndex == index ? 54 : 28,
-      height: 8,
+      margin: ResponsiveUtils.marginSymmetric(horizontalPercent: 0.01),
+      width: currentIndex == index ? ResponsiveUtils.width(0.099) : ResponsiveUtils.width(0.05),
+      height: ResponsiveUtils.height(0.01),
       decoration: BoxDecoration(
         color: currentIndex == index
             ? (isDarkMode ? AppConstants.dotActiveColor : AppConstants.dotActiveColor)
             : (isDarkMode ? AppConstants.dotInactiveColor : Colors.black),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: ResponsiveUtils.circular(0.022),
       ),
     );
   }

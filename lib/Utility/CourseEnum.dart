@@ -14,7 +14,7 @@ extension CourseNameExtension on CourseName {
   String get label {
     switch (this) {
       case CourseName.Btech:
-        return 'Btech';
+        return 'B.tech';
       case CourseName.mtech:
         return 'M.Tech';
       case CourseName.bsc:

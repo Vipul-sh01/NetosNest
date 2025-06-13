@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,12 +24,12 @@ class OfferBottom extends StatelessWidget {
               text ?? '',
               style: TextStyle(
                 color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                fontSize: 24,
+                fontSize: ResponsiveUtils.fontSize(0.050)
               ),
               softWrap: true,
             ),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: ResponsiveUtils.width(0.02)),
           if (title != null) title! else const SizedBox(),
         ],
       ),

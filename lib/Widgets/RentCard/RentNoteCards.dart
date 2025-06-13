@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,27 +35,27 @@ class RentNotesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       ()=> Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: ResponsiveUtils.paddingAll(0.025),
         child: Container(
           width: double.infinity,
-          height: 500,
+          height: ResponsiveUtils.height(0.55),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: ResponsiveUtils.circular(0.02),
             color: lightModeController.isLightMode.value ? Colors.black : Colors.white,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: ResponsiveUtils.paddingAll(0.025),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ContainerRow(text: text, moduleText: moduleText, courseName: courseNames,),
-                const SizedBox(height: 15),
+                SizedBox(height: ResponsiveUtils.height(0.02)),
                 RentImage(imageUrl: imageUrl, onTap: () { Get.to(PdfViewerScreen(note: note,)); },),
-                const SizedBox(height: 15),
+                SizedBox(height: ResponsiveUtils.height(0.02)),
                 RentOfferContainer(text: priceText,),
-                const SizedBox(height: 15),
+                SizedBox(height: ResponsiveUtils.height(0.02)),
                 RentButton(onPressed: () { Get.to(PaymentScreen()); }, text: 'Rent Notes',),
-                const SizedBox(height: 15),
+                SizedBox(height: ResponsiveUtils.height(0.02)),
               ],
             ),
           ),

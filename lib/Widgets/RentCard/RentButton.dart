@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,20 +24,20 @@ class RentButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: SizedBox(
           width: double.infinity,
-          height: 60,
+          height: ResponsiveUtils.height(0.06),
           child: ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               backgroundColor: lightModeController.isLightMode.value ? Colors.white : Colors.black,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: ResponsiveUtils.circular(0.02),
               ),
             ),
             child: Text(
               text,
               style: TextStyle(
                 color: lightModeController.isLightMode.value ? Colors.black : Colors.white,
-                fontSize: 16,
+                fontSize: ResponsiveUtils.fontSize(0.04),
                 fontWeight: FontWeight.bold,
               ),
             ),

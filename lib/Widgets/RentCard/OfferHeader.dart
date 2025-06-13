@@ -1,16 +1,15 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../Constents/AppConstents.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 
 class OfferHeader extends StatelessWidget {
-  final Color color;
+  final Color? color;
   final String? courseName;
   OfferHeader({
     super.key,
-    required this.color,
+    this.color,
     this.courseName,
   });
 
@@ -25,24 +24,24 @@ class OfferHeader extends StatelessWidget {
             courseName ?? "CSE 2005",
             style: TextStyle(
               color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-              fontSize: 16,
+              fontSize: ResponsiveUtils.fontSize(0.036),
             ),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: ResponsiveUtils.width(0.02)),
           Container(
-            width: 90,
-            height: 22,
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            width: ResponsiveUtils.width(0.21),
+            height: ResponsiveUtils.height(0.028),
+            padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.01,verticalPercent: 0.0019),
             decoration: BoxDecoration(
               color: color,
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: ResponsiveUtils.circular(0.01),
             ),
             child: Center(
-              child: const Text(
-                "SCOPE",
+              child: Text(
+                 "SCOPE",
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 12,
+                  fontSize: ResponsiveUtils.fontSize(0.03),
                   fontWeight: FontWeight.bold,
                 ),
               ),

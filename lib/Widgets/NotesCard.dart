@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Constents/AppConstents.dart';
@@ -36,7 +37,7 @@ class NoteCard extends StatelessWidget {
                         "150/-",
                         style: TextStyle(
                           color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                          fontSize: 22,
+                          fontSize: ResponsiveUtils.fontSize(0.044),
                         ),
                       ), text: 'Computation of \nMathematics',
                     ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../Constents/AppConstents.dart';
 import '../Constents/AppStyles.dart';
+import '../Utility/ResponsiveUtils.dart';
 import '../ViewModels/DarkModeViewModels.dart';
 import '../ViewModels/SplashViewModels.dart';
 import '../Widgets/ImageWidgets.dart';
@@ -22,11 +22,11 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(AppConstants.welcomeText, style: AppStyles.welcomeTextStyle),
-            SizedBox(height: 5),
+            SizedBox(height: ResponsiveUtils.height(0.0001)),
             Text(AppConstants.appName, style: AppStyles.appNameTextStyle),
-            SizedBox(height: 30),
+            SizedBox(height: ResponsiveUtils.height(0.05)),
             ImageWidget(imagePath: AppConstants.splashLogo, fit: BoxFit.fitWidth),
-            SizedBox(height: 30),
+            SizedBox(height: ResponsiveUtils.height(0.05)),
             Text(AppConstants.tagline, style: AppStyles.authTextStyle),
           ],
         ),

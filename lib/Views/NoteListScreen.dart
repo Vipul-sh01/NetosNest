@@ -37,6 +37,7 @@ class NoteListScreen extends StatelessWidget {
       backgroundColor: lightModeController.isLightMode.value ? Colors.white : Colors.black,
       appBar: AppBar(
         backgroundColor: lightModeController.isLightMode.value ? Colors.black : Colors.white,
+        automaticallyImplyLeading: true,
         leading: BackWidget(
           onTap: () => Get.back(),
           imagePath: lightModeController.isLightMode.value
@@ -47,6 +48,7 @@ class NoteListScreen extends StatelessWidget {
           AppConstants.noteSwapTexts,
           style: AppStyles.textStyleLargeBold,
         ),
+        elevation: 0,
         centerTitle: true,
         actions: [
           BackWidget(

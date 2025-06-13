@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class SearchSort extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 26.0, vertical: 8.0),
+      padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.04, verticalPercent: 0.01),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -26,19 +27,19 @@ class SearchSort extends StatelessWidget {
             child: GestureDetector(
               onTap: (){},
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.04, verticalPercent: 0.01),
                 decoration: BoxDecoration(
                   color: AppConstants.searchColors,
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: ResponsiveUtils.circular(0.02),
                 ),
                 child: Row(
                   children: [
                     Expanded(
                       child: SizedBox(
-                        height: 22,
+                        height: ResponsiveUtils.height(0.03),
                         child: TextField(
-                          style: const TextStyle(
-                            fontSize: 16,
+                          style: TextStyle(
+                            fontSize: ResponsiveUtils.fontSize(0.037),
                             fontWeight: FontWeight.bold,
                             color: Colors.black54,
                           ),
@@ -54,28 +55,28 @@ class SearchSort extends StatelessWidget {
                       ),
                     ),
 
-                    const SizedBox(width: 8),
+                    SizedBox(width: ResponsiveUtils.width(0.01)),
                     ImageWidget(
                       imagePath: AppConstants.groupSearchIcon,
                       fit: BoxFit.contain,
-                      height: 25,
-                      width: 40,
+                      width: ResponsiveUtils.width(0.049),
+                      height: ResponsiveUtils.height(0.02),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: ResponsiveUtils.width(0.03)),
           GestureDetector(
             onTap: onTap,
             child: SizedBox(
-              width: 100,
+              width: ResponsiveUtils.width(0.25),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.04, verticalPercent: 0.013),
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: ResponsiveUtils.circular(0.02),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -83,10 +84,10 @@ class SearchSort extends StatelessWidget {
                     ImageWidget(
                       imagePath: AppConstants.sortIcon,
                       fit: BoxFit.contain,
-                      height: 25,
-                      width: 40,
+                      width: ResponsiveUtils.width(0.049),
+                      height: ResponsiveUtils.height(0.02),
                     ),
-                    const SizedBox(width: 5),
+                    SizedBox(width: ResponsiveUtils.width(0.03)),
                     const Text(
                       "Sort",
                       style: TextStyle(

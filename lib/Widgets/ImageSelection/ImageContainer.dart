@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Constents/AppConstents.dart';
@@ -23,14 +24,14 @@ class ImageContainer extends StatelessWidget {
         currentPage.value = index;
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8),
+        margin: ResponsiveUtils.marginSymmetric(horizontalPercent: 0.01),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: ResponsiveUtils.circular(0.02),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 10,
-              offset: const Offset(2, 2),
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: ResponsiveUtils.blurRadius(0.025),
+              offset: ResponsiveUtils.shadowOffset(x: 0.001, y: 0.001),
             ),
           ],
         ),
@@ -39,15 +40,15 @@ class ImageContainer extends StatelessWidget {
           child: Image.asset(
             imagePath,
             fit: BoxFit.fitWidth,
-            width: 120,
-            height: 160,
+            width: ResponsiveUtils.width(0.29),
+            height: ResponsiveUtils.height(0.19),
             errorBuilder: (context, error, stackTrace) {
               return Container(
-                width: 120,
-                height: 160,
+                width: ResponsiveUtils.width(0.29),
+                height: ResponsiveUtils.height(0.19),
                 decoration: BoxDecoration(
                   color: lightModeController.isLightMode.value ? AppConstants.darkContainerColor : AppConstants.lightContainerColor,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: ResponsiveUtils.circular(0.02),
                 ),
               );
             },

@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,7 @@ class DividerWidgets extends StatelessWidget {
       children: [
         Expanded(child: Divider(color: lightModeController.isLightMode.value ? Colors.white70: Colors.black,)),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: ResponsiveUtils.paddingAll(0.02),
           child: Text("Or",
               style: TextStyle(color: lightModeController.isLightMode.value ? Colors.white70: Colors.black)),
         ),

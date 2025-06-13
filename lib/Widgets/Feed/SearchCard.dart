@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
@@ -29,15 +30,18 @@ class SearchCard extends StatelessWidget {
 
     return Obx(
       () => Padding(
-        padding: const EdgeInsets.all(8),
+        padding: ResponsiveUtils.paddingAll(0.017),
         child: Container(
-          padding:
-              const EdgeInsets.only(top: 10, right: 22, left: 24, bottom: 18),
+          padding: ResponsiveUtils.paddingOnly(
+              topPercent: 0.01,
+              bottomPercent: 0.02,
+              leftPercent: 0.03,
+              rightPercent: 0.048),
           decoration: BoxDecoration(
             color: lightModeController.isLightMode.value
                 ? Colors.black
                 : Colors.white,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: ResponsiveUtils.circular(0.02),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,14 +54,14 @@ class SearchCard extends StatelessWidget {
                       color: color,
                       courseName: courseName,
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: ResponsiveUtils.height(0.01)),
                     OfferBottom(
                       text: text,
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: ResponsiveUtils.width(0.01)),
               Stack(
                 clipBehavior: Clip.none,
                 children: [
@@ -68,17 +72,17 @@ class SearchCard extends StatelessWidget {
                             color: Colors.white,
                             child: Image.network(
                               imageUrl,
-                              width: 110,
-                              height: 100,
+                              width: ResponsiveUtils.width(0.25),
+                              height: ResponsiveUtils.height(0.11),
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(Icons.broken_image, size: 50),
+                                  Icon(Icons.broken_image, size: ResponsiveUtils.iconSize(0.05)),
                               loadingBuilder:
                                   (context, child, loadingProgress) {
                                 if (loadingProgress == null) return child;
-                                return const SizedBox(
-                                  width: 110,
-                                  height: 100,
+                                return SizedBox(
+                                  width: ResponsiveUtils.width(0.25),
+                                  height: ResponsiveUtils.height(0.11),
                                   child: Center(
                                       child: CircularProgressIndicator()),
                                 );
@@ -86,28 +90,26 @@ class SearchCard extends StatelessWidget {
                             ),
                           )
                         : Container(
-                            width: 110,
-                            height: 100,
+                            width: ResponsiveUtils.width(0.25),
+                            height: ResponsiveUtils.height(0.11),
                             color: Colors.pink,
-                            child:
-                                const Icon(Icons.image_not_supported, size: 50),
+                            child: Icon(Icons.image_not_supported, size: ResponsiveUtils.iconSize(0.05)),
                           ),
                   ),
                   Positioned(
-                    bottom: -10,
-                    right: -20,
+                    bottom: ResponsiveUtils.height(-0.02),
+                    right: ResponsiveUtils.width(-0.05),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 6, vertical: 2),
+                      padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.0156, verticalPercent: 0.003),
                       decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.0),
-                        borderRadius: BorderRadius.circular(6),
+                        borderRadius: ResponsiveUtils.circular(0.01),
                       ),
-                      child: const Text(
+                      child: Text(
                         "+2",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: ResponsiveUtils.fontSize(0.037),
                           fontWeight: FontWeight.bold,
                         ),
                       ),

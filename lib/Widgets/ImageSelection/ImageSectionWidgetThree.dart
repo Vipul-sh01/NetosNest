@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Constents/AppConstents.dart';
+import '../../Utility/ResponsiveUtils.dart';
 import '../../ViewModels/ImageSectionViewModels.dart';
 import 'NetWorkImage.dart';
 

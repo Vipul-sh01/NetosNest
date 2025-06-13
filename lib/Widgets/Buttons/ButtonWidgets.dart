@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../Constents/AppConstents.dart';
 import '../../Constents/AppStyles.dart';
+import '../../Utility/ResponsiveUtils.dart';
 
 class ButtonWidgets extends StatelessWidget {
   final String buttonText;
@@ -14,14 +15,14 @@ class ButtonWidgets extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        height: 65,
+        height: ResponsiveUtils.height(0.06),
         width: double.infinity,
         child: Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.all(12),
+          padding: ResponsiveUtils.paddingAll(0.01),
           decoration: BoxDecoration(
             color: AppConstants.boxColor,
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: ResponsiveUtils.circular(0.02),
           ),
           child: Text(
             buttonText,

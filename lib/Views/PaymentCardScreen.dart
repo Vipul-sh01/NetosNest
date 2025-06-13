@@ -29,6 +29,7 @@ class PaymentScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: true,
         backgroundColor:
         lightModeController.isLightMode.value ? Colors.black : Colors.white,
         leading: BackWidget(
@@ -41,6 +42,7 @@ class PaymentScreen extends StatelessWidget {
           AppConstants.noteSwapTexts,
           style: AppStyles.textStyleLargeBold,
         ),
+        elevation: 0,
         centerTitle: true,
         actions: [
           BackWidget(

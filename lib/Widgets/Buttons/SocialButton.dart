@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-
+import '../../Utility/ResponsiveUtils.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 
 class SocialButton extends StatelessWidget {
@@ -24,12 +23,12 @@ class SocialButton extends StatelessWidget {
     return Obx(
       ()=> ElevatedButton.icon(
         onPressed: onPressed ?? () {},
-        icon: Image.asset(asset, height: 20),
+        icon: Image.asset(asset, height: ResponsiveUtils.height(0.025)),
         label: Text(text),
         style: ElevatedButton.styleFrom(
           backgroundColor: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-          minimumSize: const Size(180, 60),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          minimumSize: Size(ResponsiveUtils.height(0.20), ResponsiveUtils.width(0.13)),
+          shape: RoundedRectangleBorder(borderRadius: ResponsiveUtils.circular(0.02),),
         ),
       ),
     );

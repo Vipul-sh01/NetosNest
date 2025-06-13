@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Utility/ResponsiveUtils.dart';
+
 class AppConstants {
   // Text Constants
   static const String welcomeText = "Welcome to";
@@ -71,7 +73,7 @@ class AppConstants {
   static const double iconSize = 20.0;
 
   // Colors
-  // static const Color backgroundColor = Colors.white;
+  static const Color backgroundColor = Colors.white;
   static const Color textColor = Colors.black;
   static const Color buttonColor = Colors.purple;
   static const Color dotActiveColor = Color(0xFFA883C5);
@@ -99,22 +101,6 @@ class AppConstants {
 
   //Profile avatar
   static const String defaultProfileImage = "assets/MaleUser.png";
-
-
-  // Size
-  static const double containerHeights = 20;
-  static const double containerBorderRadius = 30;
-  static const double profileContainerHeight = 230;
-  static const double profileContainerBorderRadius = 40;
-  static const double textFontSizeLarge = 20;
-  static const double textFontSizeMedium = 16;
-  static const double textFontSizeSmall = 14;
-  static const double containerHeight = 90;
-  static const double containerWidth = 130;
-  static const double iconSizes = 50;
-  static const double borderRadius = 20;
-  static const double paddingLeft = 5;
-  static const double spacingBetweenIconText = 5;
 
   // Durations
   static const int splashDuration = 3; // in seconds

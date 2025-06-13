@@ -48,6 +48,7 @@ class SearchScreen extends StatelessWidget {
         backgroundColor:
             lightModeController.isLightMode.value ? Colors.white : Colors.black,
         appBar: AppBar(
+          automaticallyImplyLeading: true,
           backgroundColor: lightModeController.isLightMode.value
               ? Colors.black
               : Colors.white,
@@ -63,6 +64,7 @@ class SearchScreen extends StatelessWidget {
             AppConstants.noteSwapTexts,
             style: AppStyles.textStyleLargeBold,
           ),
+          elevation: 0,
           centerTitle: true,
           actions: [
             BackWidget(
@@ -105,8 +107,7 @@ class SearchScreen extends StatelessWidget {
                         Get.to(() => NotificationScreen(note: note));
                       },
                       child: SearchCard(
-                        color:
-                            searchCardColors[index % searchCardColors.length],
+                        color: searchCardColors[index % searchCardColors.length],
                         text: note.subject?.isNotEmpty == true
                             ? note.subject!
                             : 'No Subject',

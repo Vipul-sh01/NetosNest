@@ -5,10 +5,12 @@ import 'package:pdfx/pdfx.dart';
 import '../../ViewModels/PdfViewer/ModulePdfController.dart';
 import '../../Models/NoteModel.dart';
 import '../../Services/PdfService.dart';
+import '../Utility/ResponsiveUtils.dart';
 
 class PdfViewerScreen extends StatelessWidget {
   final NoteModel note;
   const PdfViewerScreen({Key? key, required this.note}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final ModulePdfController controller =
@@ -17,7 +19,10 @@ class PdfViewerScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('PDF Viewer'),
+        title: Text(
+          'PDF Viewer',
+          style: TextStyle(fontSize: ResponsiveUtils.fontSize(0.05)),
+        ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -31,11 +36,11 @@ class PdfViewerScreen extends StatelessWidget {
             end: Alignment.bottomCenter,
           ),
         ),
-        padding: const EdgeInsets.only(
-          top: kToolbarHeight + 16,
-          left: 12,
-          right: 12,
-          bottom: 12,
+        padding: ResponsiveUtils.paddingOnly(
+          topPercent: (kToolbarHeight / Get.height) + 0.02,
+          bottomPercent: 0.015,
+          leftPercent: 0.03,
+          rightPercent: 0.03,
         ),
         child: Obx(() {
           if (controller.isLoading.value) {
@@ -45,25 +50,29 @@ class PdfViewerScreen extends StatelessWidget {
               ),
             );
           }
+
           final error = controller.errorMessage.value;
           if (error != null && error.isNotEmpty) {
             return Center(
               child: Container(
-                padding: const EdgeInsets.all(16),
+                padding: ResponsiveUtils.paddingAll(0.02),
                 decoration: BoxDecoration(
                   color: Colors.red[50],
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(ResponsiveUtils.width(0.03)),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.red.withOpacity(0.2),
-                      blurRadius: 8,
-                      offset: const Offset(0, 3),
+                      blurRadius: ResponsiveUtils.blurRadius(0.01),
+                      offset: ResponsiveUtils.shadowOffset(x: 0.0, y: 0.01),
                     ),
                   ],
                 ),
                 child: Text(
                   'Error:\n$error',
-                  style: const TextStyle(color: Colors.red, fontSize: 16),
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: ResponsiveUtils.fontSize(0.038),
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -72,10 +81,13 @@ class PdfViewerScreen extends StatelessWidget {
 
           final pdfCtrl = controller.pdfController;
           if (pdfCtrl == null) {
-            return const Center(
+            return Center(
               child: Text(
                 'Failed to load PDF.',
-                style: TextStyle(color: Colors.red, fontSize: 16),
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: ResponsiveUtils.fontSize(0.038),
+                ),
               ),
             );
           }
@@ -85,16 +97,16 @@ class PdfViewerScreen extends StatelessWidget {
               return Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(ResponsiveUtils.width(0.04)),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black12,
-                      blurRadius: 12,
-                      offset: const Offset(0, 4),
+                      blurRadius: ResponsiveUtils.blurRadius(0.02),
+                      offset: ResponsiveUtils.shadowOffset(x: 0, y: 0.015),
                     ),
                   ],
                 ),
-                padding: const EdgeInsets.all(8),
+                padding: ResponsiveUtils.paddingAll(0.015),
                 width: constraints.maxWidth,
                 height: constraints.maxHeight,
                 child: PdfViewPinch(

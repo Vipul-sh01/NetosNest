@@ -11,7 +11,7 @@ class ThreeNoteController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchThreeNotes();  // Fetch the notes when the controller is initialized
+    fetchThreeNotes();
   }
 
   // Method to fetch notes from the service

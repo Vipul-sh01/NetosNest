@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Constents/AppConstents.dart';
@@ -24,6 +25,7 @@ class AddUsers extends StatelessWidget {
       () => Scaffold(
         backgroundColor: lightModeController.isLightMode.value ? Colors.black : Colors.white,
         appBar: AppBar(
+          automaticallyImplyLeading: true,
           backgroundColor: lightModeController.isLightMode.value ? Colors.black : Colors.white,
           leading: BackWidget(
             onTap: () {},
@@ -33,6 +35,7 @@ class AddUsers extends StatelessWidget {
             AppConstants.noteSwapTexts,
             style: AppStyles.textStyleLargeBold,
           ),
+          elevation: 0,
           centerTitle: true,
           actions: [
             BackWidget(
@@ -43,7 +46,7 @@ class AddUsers extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: ResponsiveUtils.paddingAll(0.01),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -68,9 +71,9 @@ class AddUsers extends StatelessWidget {
                   imagePath: imagePickerService.imageFile.value?.path ??
                       AppConstants.defaultProfileImage,
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: ResponsiveUtils.height(0.01)),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: ResponsiveUtils.paddingAll(0.02),
                   child: Column(
                     children: [
                       CustomTextField(
@@ -93,11 +96,11 @@ class AddUsers extends StatelessWidget {
                         controller: authController.blockController,
                         isDarkMode: lightModeController.isLightMode.value,
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: ResponsiveUtils.height(0.02)),
                       ButtonWidgets(onTap: () {
                         authController.updateUser();
                       }, buttonText: 'Save'),
-                      const SizedBox(height: 10),
+                      SizedBox(height: ResponsiveUtils.height(0.02)),
                       ButtonWidgets(onTap: () {}, buttonText: 'Log Out'),
                     ],
                   ),

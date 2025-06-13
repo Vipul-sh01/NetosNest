@@ -38,9 +38,6 @@ class ModulePdfController extends GetxController {
       if (url.isEmpty) {
         throw Exception("PDF URL is empty.");
       }
-
-      debugPrint('🔗 PDF URL: $url');
-
       // Fetch the PDF bytes
       final Uint8List pdfBytes = await _pdfService.getPdfBytes(url);
 
@@ -48,15 +45,10 @@ class ModulePdfController extends GetxController {
         throw Exception("Fetched PDF bytes are empty.");
       }
 
-      debugPrint('📦 PDF byte length: ${pdfBytes.length}');
-      debugPrint('📄 PDF Header: ${String.fromCharCodes(pdfBytes.take(10))}');
-
       // Save the PDF to a temporary file
       final tempDir = await getTemporaryDirectory();
       final tempFile = File('${tempDir.path}/temp_pdf.pdf');
       await tempFile.writeAsBytes(pdfBytes);
-
-      debugPrint('📂 PDF saved to: ${tempFile.path}');
 
       // Open the PDF document from the saved file
       final document = await PdfDocument.openFile(tempFile.path);
@@ -65,21 +57,18 @@ class ModulePdfController extends GetxController {
       errorMessage.value = null;
     } catch (e, stackTrace) {
       errorMessage.value = e.toString();
-      debugPrint('❌ Error initializing PDF: $e');
-      debugPrint('📛 Stack trace: $stackTrace');
     } finally {
       isLoading.value = false;
     }
   }
 
   String _getPdfUrl() {
-    // Check for a valid fileUrl
     final moduleWithFileUrl = note.modules.firstWhereOrNull(
           (m) => m.fileUrl.isNotEmpty,
     );
 
     if (moduleWithFileUrl != null) {
-      allowAllPages.value = moduleWithFileUrl.isPurchased; // Allow all pages if purchased
+      allowAllPages.value = moduleWithFileUrl.isPurchased;
       return moduleWithFileUrl.fileUrl;
     }
 

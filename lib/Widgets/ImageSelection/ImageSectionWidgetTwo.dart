@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Constents/AppConstents.dart';
+import '../../Utility/ResponsiveUtils.dart';
 import '../../ViewModels/ImageSectionViewModels.dart';
 import '../../ViewModels/NotesUploadsViewsModels/NoteController.dart';
 import 'NetWorkImage.dart';
@@ -19,7 +20,7 @@ class ImageSectionWidgetTwo extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 200,
+          height: ResponsiveUtils.height(0.2),
           child: Obx(() {
             return ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -32,7 +33,8 @@ class ImageSectionWidgetTwo extends StatelessWidget {
                 return ImageContainers(
                   imagePath: previewUrl,
                   index: index,
-                  currentPage: controller.currentPage1, note: note,
+                  currentPage: controller.currentPage1,
+                  note: note,
                 );
               },
             );
@@ -44,11 +46,11 @@ class ImageSectionWidgetTwo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
               3,
-                  (index) => AnimatedContainer(
+              (index) => AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                height: 8,
-                width: 8,
+                margin: ResponsiveUtils.marginSymmetric(horizontalPercent: 0.01),
+                height: ResponsiveUtils.height(0.01),
+                width: ResponsiveUtils.width(0.02),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: controller.currentPage1.value == index
@@ -58,7 +60,7 @@ class ImageSectionWidgetTwo extends StatelessWidget {
                     color: controller.currentPage1.value == index
                         ? AppConstants.darkContainerColor
                         : AppConstants.iconNoteColors,
-                    width: 2,
+                    width: ResponsiveUtils.width(0.006),
                   ),
                 ),
               ),

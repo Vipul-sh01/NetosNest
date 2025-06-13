@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../Constents/AppConstents.dart';
 import '../Constents/AppStyles.dart';
 import '../Services/ImagePicker.dart';
+import '../Utility/ResponsiveUtils.dart';
 import '../ViewModels/DarkModeViewModels.dart';
 import '../ViewModels/UserViewsModels/UserViewsModels.dart';
 import '../Widgets/BottonBar/BottomBar.dart';
@@ -27,6 +28,7 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: lightModeController.isLightMode.value ? Colors.white : Colors.black,
       appBar: AppBar(
         backgroundColor: lightModeController.isLightMode.value ? Colors.black : Colors.white,
+        automaticallyImplyLeading: true,
         leading: BackWidget(
           onTap: () {},
           imagePath: lightModeController.isLightMode.value ? AppConstants.backWhiteIcon : AppConstants.backBlackIcon,
@@ -35,6 +37,7 @@ class ProfileScreen extends StatelessWidget {
           AppConstants.noteSwapTexts,
           style: AppStyles.textStyleLargeBold,
         ),
+        elevation: 0,
         centerTitle: true,
         actions: [
           BackWidget(
@@ -50,13 +53,13 @@ class ProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: AppConstants.profileContainerHeight,
+              height: ResponsiveUtils.height(0.3),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: lightModeController.isLightMode.value ? Colors.black : Colors.white,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(AppConstants.profileContainerBorderRadius),
-                  bottomRight: Radius.circular(AppConstants.profileContainerBorderRadius),
+                borderRadius: ResponsiveUtils.borderRadiusOnly(
+                  bottomRight: 0.05,
+                  bottomLeft:  0.05,
                 ),
               ),
               child: Column(
@@ -67,14 +70,14 @@ class ProfileScreen extends StatelessWidget {
                     }
                     final user = authController.currentUser.value;
                     return CircleAvatar(
-                      radius: 55.0,
+                      radius: ResponsiveUtils.width(0.13),
                       backgroundColor: Colors.black,
                       backgroundImage: (user?.profilePic?.trim().isNotEmpty ?? false)
                           ? NetworkImage(user!.profilePic!)
                           : const AssetImage(AppConstants.defaultProfileImage),
                     );
                   }),
-                  const SizedBox(height: 8),
+                  SizedBox(height: ResponsiveUtils.height(0.01)),
                   Obx(() => Text(
                     authController.currentUser.value?.name ?? AppConstants.userName,
                     style: AppStyles.textStyleLargeBold,
@@ -83,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
                     AppConstants.userBio,
                     style: AppStyles.textStyleMedium,
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: ResponsiveUtils.height(0.01)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -95,12 +98,12 @@ class ProfileScreen extends StatelessWidget {
                         AppConstants.notesPurchasedLabel,
                         style: AppStyles.textStyleSmall,
                       ),
-                      const SizedBox(width: 50),
+                      SizedBox(width:  ResponsiveUtils.width(0.07)),
                       Text(
                         AppConstants.separator,
                         style: AppStyles.textStyleSmallBold,
                       ),
-                      const SizedBox(width: 50),
+                      SizedBox(width:  ResponsiveUtils.width(0.07)),
                       Text(
                         AppConstants.notesSold,
                         style: AppStyles.textStyleSmallBold,
@@ -115,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.05, verticalPercent: 0.02),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -126,7 +129,7 @@ class ProfileScreen extends StatelessWidget {
                       textOne: authController.currentUser.value?.block ?? '',
                     );
                   }),
-                  const SizedBox(height: 10),
+                  SizedBox(height:  ResponsiveUtils.height(0.01)),
                   Obx(
                     ()=> DetailItemWidget(
                       text: "Room No",
@@ -134,7 +137,7 @@ class ProfileScreen extends StatelessWidget {
                       textOne: authController.currentUser.value?.roomNo ?? '',
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height:  ResponsiveUtils.height(0.01)),
                   Obx(
                     ()=> DetailItemWidget(
                       text: "Department",
@@ -146,7 +149,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: ResponsiveUtils.paddingAll(0.02),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -154,6 +157,7 @@ class ProfileScreen extends StatelessWidget {
                     "Offers Made",
                     style: AppStyles.offerStyleLarge,
                   ),
+                  SizedBox(height:  ResponsiveUtils.height(0.01)),
                   NoteCard(),
                   NoteCard(),
                 ],

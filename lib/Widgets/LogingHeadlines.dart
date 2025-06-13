@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Constents/AppStyles.dart';
+import '../Utility/ResponsiveUtils.dart';
 
 class LoginHeadlines extends StatelessWidget {
   final String headingText;
@@ -20,7 +21,7 @@ class LoginHeadlines extends StatelessWidget {
           headingText,
           style: AppStyles.loginHeading,
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: ResponsiveUtils.height(0.01)),
         Text(
           subHeadingText,
           textAlign: TextAlign.center,

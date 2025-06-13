@@ -45,7 +45,6 @@ class NoteController extends GetxController {
     _notesSubscription = _noteService.getAllNotesStream().listen((noteList) {
       notes.value = noteList;
       isLoading.value = false;
-      print("Real-time notes updated: ${noteList.length}");
     }, onError: (e) {
       isLoading.value = false;
       print("Error in stream: $e");

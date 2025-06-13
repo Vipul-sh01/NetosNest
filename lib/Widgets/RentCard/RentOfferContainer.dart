@@ -1,3 +1,4 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ class RentOfferContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       ()=> Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: ResponsiveUtils.paddingAll(0.011),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -24,7 +25,7 @@ class RentOfferContainer extends StatelessWidget {
               "Offered by",
               style: TextStyle(
                 color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                fontSize: 18,
+                fontSize: ResponsiveUtils.fontSize(0.044)
               ),
             ),
             TextField(
@@ -38,12 +39,12 @@ class RentOfferContainer extends StatelessWidget {
               ),
               style: TextStyle(color: Colors.white),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: ResponsiveUtils.height(0.02)),
             Text(
               text?? '',
               style: TextStyle(
                 color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                fontSize: 18,
+                fontSize: ResponsiveUtils.fontSize(0.034)
               ),
             ),
           ],

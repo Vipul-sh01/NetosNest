@@ -1,7 +1,6 @@
+import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../ImageWidgets.dart';
 import '../PreviewImageWidget.dart';
 
 class RentImage extends StatelessWidget {
@@ -23,21 +22,24 @@ class RentImage extends StatelessWidget {
             child: PreviewImageWidget(
               imageUrl: imageUrl,
               fit: BoxFit.cover,
-              width: 200, onTap: onTap,
+              width:ResponsiveUtils.width(0.3),
+              onTap: onTap,
             )
           ),
           Expanded(
             child: PreviewImageWidget(
               imageUrl: imageUrl,
               fit: BoxFit.cover,
-              width: 200, onTap: onTap,
+              width:ResponsiveUtils.width(0.3),
+              onTap: onTap,
             )
           ),
           Expanded(
             child: PreviewImageWidget(
               imageUrl: imageUrl,
               fit: BoxFit.cover,
-              width: 200, onTap: onTap,
+              width:ResponsiveUtils.width(0.3),
+              onTap: onTap,
             )
           ),
         ],
