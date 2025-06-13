@@ -10,6 +10,7 @@ import '../Utility/ResponsiveUtils.dart';
 class PdfViewerScreen extends StatelessWidget {
   final NoteModel note;
   const PdfViewerScreen({Key? key, required this.note}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
