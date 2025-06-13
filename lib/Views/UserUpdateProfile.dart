@@ -11,11 +11,13 @@ import '../Widgets/Buttons/BackWidgets.dart';
 import '../Widgets/Buttons/ButtonWidgets.dart';
 import '../Widgets/Profile/CustomTextFild.dart';
 import '../Widgets/ProfileAvatar.dart';
+import 'ProfileScreen.dart';
 
 class AddUsers extends StatelessWidget {
   AddUsers({Key? key}) : super(key: key);
 
-  final LightModeController lightModeController = Get.put(LightModeController());
+  final LightModeController lightModeController =
+      Get.put(LightModeController());
   final ImagePickerService imagePickerService = Get.put(ImagePickerService());
   final AuthController authController = Get.put(AuthController());
 
@@ -23,13 +25,18 @@ class AddUsers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        backgroundColor: lightModeController.isLightMode.value ? Colors.black : Colors.white,
+        backgroundColor:
+            lightModeController.isLightMode.value ? Colors.black : Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: true,
-          backgroundColor: lightModeController.isLightMode.value ? Colors.black : Colors.white,
+          backgroundColor: lightModeController.isLightMode.value
+              ? Colors.black
+              : Colors.white,
           leading: BackWidget(
             onTap: () {},
-            imagePath: lightModeController.isLightMode.value ? AppConstants.backWhiteIcon : AppConstants.backBlackIcon,
+            imagePath: lightModeController.isLightMode.value
+                ? AppConstants.backWhiteIcon
+                : AppConstants.backBlackIcon,
           ),
           title: Text(
             AppConstants.noteSwapTexts,
@@ -40,7 +47,9 @@ class AddUsers extends StatelessWidget {
           actions: [
             BackWidget(
               onTap: () {},
-              imagePath: lightModeController.isLightMode.value ? AppConstants.whiteSettingIcon : AppConstants.blackSettingIcon,
+              imagePath: lightModeController.isLightMode.value
+                  ? AppConstants.whiteSettingIcon
+                  : AppConstants.blackSettingIcon,
             ),
           ],
         ),
@@ -97,9 +106,21 @@ class AddUsers extends StatelessWidget {
                         isDarkMode: lightModeController.isLightMode.value,
                       ),
                       SizedBox(height: ResponsiveUtils.height(0.02)),
-                      ButtonWidgets(onTap: () {
-                        authController.updateUser();
-                      }, buttonText: 'Save'),
+                      Obx(
+                        () => authController.isLoading.value
+                            ? CircularProgressIndicator()
+                            : ButtonWidgets(
+                            onTap: () async {
+                              bool isSuccess = await authController.updateUser();
+                              if (isSuccess) {
+                                Get.to(ProfileScreen());
+                              }
+                              else{
+                                Get.off(AddUsers());
+                              }
+                            },
+                                buttonText: 'Save'),
+                      ),
                       SizedBox(height: ResponsiveUtils.height(0.02)),
                       ButtonWidgets(onTap: () {}, buttonText: 'Log Out'),
                     ],

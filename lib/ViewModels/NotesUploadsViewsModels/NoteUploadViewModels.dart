@@ -22,12 +22,13 @@ class NoteUploadController extends GetxController {
   final boardOrUniversityController = TextEditingController();
   final subjectController = TextEditingController();
 
-  // Reactive variables
+  // Reactive UI state
   var examDate = DateTime.now().obs;
   var modulePrice = 0.0.obs;
   var fileName = ''.obs;
   var selectedModule = ModuleName.values.first.obs;
   var uploadProgress = 0.0.obs;
+  var isLoading = false.obs;
 
   // File-related state
   String? pickedFilePath;
@@ -80,11 +81,13 @@ class NoteUploadController extends GetxController {
   }
 
   /// Generate preview image, add module, and upload note
-  Future<void> addModuleAndUploadNote(UserModel currentUser) async {
+  Future<bool> addModuleAndUploadNote(UserModel currentUser) async {
     if (pickedFilePath == null || fileDownloadUrl == null) {
       DialogUtils.showSnackbar("Missing File", "Please pick and upload a file first.", isError: true);
-      return;
+      return false;
     }
+
+    isLoading.value = true; // Start loading
 
     final file = File(pickedFilePath!);
     final uploadPath = 'notes/${currentUser.uid}/${const Uuid().v4()}';
@@ -95,7 +98,8 @@ class NoteUploadController extends GetxController {
 
       if (previewImageUrl == null) {
         DialogUtils.showSnackbar("Preview Error", "Preview image was not generated properly.", isError: true);
-        return;
+        isLoading.value = false;
+        return false;
       }
 
       // Add module
@@ -128,12 +132,17 @@ class NoteUploadController extends GetxController {
 
       _resetAllFields();
       DialogUtils.showSnackbar("Success", "Note uploaded successfully");
+      isLoading.value = false;
+      return true;
     } catch (e) {
       DialogUtils.showSnackbar("Error", "Failed to upload note: $e", isError: true);
+      isLoading.value = false;
+      return false;
     }
   }
 
-  /// Reset module fields
+
+  /// Reset fields related to file/module
   void _resetModuleUploadFields() {
     fileName.value = '';
     pickedFilePath = null;
@@ -144,7 +153,7 @@ class NoteUploadController extends GetxController {
     selectedModule.value = ModuleName.values.first;
   }
 
-  /// Reset all fields
+  /// Reset all input fields and states
   void _resetAllFields() {
     _resetModuleUploadFields();
     modules.clear();

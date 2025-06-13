@@ -120,10 +120,10 @@ class AuthController extends GetxController {
   }
 
   /// Update user data
-  Future<void> updateUser() async {
+  Future<bool> updateUser() async {
     if (currentUser == null) {
       DialogUtils.showSnackbar("Error", "User not found", isError: true);
-      return;
+      return false;
     }
 
     isLoading.value = true;
@@ -148,12 +148,15 @@ class AuthController extends GetxController {
 
       currentUser = updatedUser;
       DialogUtils.showSnackbar("Success", "User updated successfully");
+      return true;
     } catch (e) {
       DialogUtils.showSnackbar("Error", "Failed to update user: $e", isError: true);
+      return false;
     } finally {
       isLoading.value = false;
     }
   }
+
 
   /// Dispose all controllers
   @override
