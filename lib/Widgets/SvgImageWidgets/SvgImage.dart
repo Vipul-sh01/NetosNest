@@ -26,7 +26,7 @@ class SvgImageWidgets extends StatelessWidget {
             assetPath,
             colorFilter: ColorFilter.mode(
               controller.selectedIndex.value == index
-                  ? AppConstants.dotActiveColor
+                  ? AppConstants.boxColor
                   : AppConstants.navColor,
               BlendMode.srcIn,
             ),

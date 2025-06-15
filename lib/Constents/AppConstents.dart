@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Utility/ResponsiveUtils.dart';
+
 
 class AppConstants {
   // Text Constants
@@ -36,12 +36,12 @@ class AppConstants {
   static const String separator = '|';
 
   // Asset Paths
-  static const String splashLogo = "assets/w9.png";
+  static const String splashLogo = "assets/r4.png";
   static const String container1Image = "assets/Designer27.png";
   static const String container2Image = "assets/Designer28.png";
-  static const String onboardingFirst = "assets/y4.png";
-  static const String onboardingTwo = "assets/w13.png";
-  static const String onboardingThree = "assets/w10.png";
+  static const String onboardingFirst = "assets/r3.png";
+  static const String onboardingTwo = "assets/r2.png";
+  static const String onboardingThree = "assets/r12.png";
   static const String facebookIcon = "assets/Facebook.png";
   static const String googleIcon = "assets/Google.png";
   static const String backBlackIcon = "assets/LeftArrow.png";
@@ -76,10 +76,9 @@ class AppConstants {
   static const Color backgroundColor = Colors.white;
   static const Color textColor = Colors.black;
   static const Color buttonColor = Colors.purple;
-  static const Color dotActiveColor = Color(0xFFA883C5);
   static const Color dotInactiveColor = Colors.white;
   static const Color iconColor = Colors.white;
-  static const Color boxColor = Color(0xFFA883C5);
+  static const Color boxColor = Color(0xFFD77E63);
   static const Color backgroundColors = Colors.white;
   static const Color appBarBackgroundColor = Colors.black;
   static const Color profileContainerColor = Colors.black;

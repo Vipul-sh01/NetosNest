@@ -20,7 +20,7 @@ class BottomNavItemWidget extends StatelessWidget {
         width: 32,
         colorFilter: ColorFilter.mode(
           controller.selectedIndex.value == index
-              ? AppConstants.dotActiveColor
+              ? AppConstants.boxColor
               : AppConstants.navColor,
           BlendMode.srcIn,
         ),

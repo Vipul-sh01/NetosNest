@@ -1,6 +1,7 @@
 import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../Constents/AppConstents.dart';
 import '../../ViewModels/AuthViewModels/AuthControllers.dart';
 import '../../ViewModels/AuthViewModels/FacebookViewModels.dart';
@@ -22,7 +23,8 @@ class LoginScreen extends StatelessWidget {
   final LightModeController lightModeController =
       Get.put(LightModeController());
   final AuthController authController = Get.put(AuthController());
-  final GoogleAuthController googleAuthController = Get.put(GoogleAuthController());
+  final GoogleAuthController googleAuthController =
+      Get.put(GoogleAuthController());
   final FacebookController facebookController = Get.put(FacebookController());
 
   @override
@@ -54,7 +56,8 @@ class LoginScreen extends StatelessWidget {
                         color: lightModeController.isLightMode.value
                             ? Colors.white
                             : Colors.black,
-                        padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.055),
+                        padding: ResponsiveUtils.paddingSymmetric(
+                            horizontalPercent: 0.055),
                         child: LoginHeadlines(
                           headingText: AppConstants.loginTitle,
                           subHeadingText: AppConstants.loginSubtitle,
@@ -74,38 +77,53 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           child: Padding(
-                            padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.02),
+                            padding: ResponsiveUtils.paddingSymmetric(
+                                horizontalPercent: 0.02),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 SizedBox(height: ResponsiveUtils.height(0.06)),
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Obx(
-                                          () => facebookController.isLoading.value
+                                      () => facebookController.isLoading.value
                                           ? const CircularProgressIndicator()
                                           : SocialButton(
-                                        text: "Facebook",
-                                        asset:
-                                        AppConstants.facebookIcon,
-                                        onPressed: () =>
-                                            facebookController
-                                                .loginWithFacebook(),
-                                      ),
+                                              text: "Facebook",
+                                              asset: AppConstants.facebookIcon,
+                                              onPressed: () async {
+                                                bool success =
+                                                    await facebookController
+                                                        .loginWithFacebook();
+                                                if (success) {
+                                                  final prefs =
+                                                      await SharedPreferences
+                                                          .getInstance();
+                                                  await prefs.setBool(
+                                                      'isLoggedIn', true);
+                                                  Get.offAll(
+                                                      () => FeedScreen());
+                                                }
+                                              },
+                                            ),
                                     ),
                                     Obx(
-                                          () => googleAuthController
-                                          .isLoading.value
+                                      () => googleAuthController.isLoading.value
                                           ? const CircularProgressIndicator()
                                           : SocialButton(
-                                        text: "Google",
-                                        asset: AppConstants.googleIcon,
-                                        onPressed: () =>
-                                            googleAuthController
-                                                .signInWithGoogle(),
-                                      ),
+                                              text: "Google",
+                                              asset: AppConstants.googleIcon,
+                                              onPressed: () async {
+                                                bool success = await googleAuthController.signInWithGoogle();
+                                                if (success) {
+                                                  final prefs = await SharedPreferences.getInstance();
+                                                  await prefs.setBool('isLoggedIn', true);
+                                                  Get.offAll(() => FeedScreen());
+                                                }
+                                              },
+                                            ),
                                     ),
                                   ],
                                 ),
@@ -125,17 +143,23 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: ResponsiveUtils.height(0.03)),
                                 Padding(
-                                  padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.02),
+                                  padding: ResponsiveUtils.paddingSymmetric(
+                                      horizontalPercent: 0.02),
                                   child: Obx(
                                     () => authController.isLoading.value
-                                        ? CircularProgressIndicator()
+                                        ? const CircularProgressIndicator()
                                         : ButtonWidgets(
                                             onTap: () async {
                                               bool isSuccess =
                                                   await authController
                                                       .logInUsers();
                                               if (isSuccess) {
-                                                Get.to(FeedScreen());
+                                                final prefs =
+                                                    await SharedPreferences
+                                                        .getInstance();
+                                                await prefs.setBool(
+                                                    'isLoggedIn', true);
+                                                Get.offAll(() => FeedScreen());
                                               } else {
                                                 Get.off(SignUpScreen());
                                               }

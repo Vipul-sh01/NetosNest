@@ -5,6 +5,7 @@ import '../Constents/AppConstents.dart';
 import '../Constents/AppStyles.dart';
 import '../Services/ImagePicker.dart';
 import '../ViewModels/AuthViewModels/AuthControllers.dart';
+import '../ViewModels/AuthViewModels/LogoutAllViewModels.dart';
 import '../ViewModels/DarkModeViewModels.dart';
 import '../Widgets/BottonBar/BottomBar.dart';
 import '../Widgets/Buttons/BackWidgets.dart';
@@ -122,7 +123,10 @@ class AddUsers extends StatelessWidget {
                                 buttonText: 'Save'),
                       ),
                       SizedBox(height: ResponsiveUtils.height(0.02)),
-                      ButtonWidgets(onTap: () {}, buttonText: 'Log Out'),
+                      ButtonWidgets(
+                        onTap: () => LogoutService.logoutAll(),
+                        buttonText: 'Log Out',
+                      )
                     ],
                   ),
                 ),

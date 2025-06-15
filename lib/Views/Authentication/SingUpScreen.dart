@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../Constents/AppConstents.dart';
 import '../../Constents/AppStyles.dart';
 import '../../Utility/ResponsiveUtils.dart';
@@ -27,7 +28,8 @@ class SignUpScreen extends StatelessWidget {
   final LightModeController lightModeController =
       Get.put(LightModeController());
   final AuthController authController = Get.put(AuthController());
-  final GoogleAuthController googleAuthController = Get.put(GoogleAuthController());
+  final GoogleAuthController googleAuthController =
+      Get.put(GoogleAuthController());
   final FacebookController facebookController = Get.put(FacebookController());
 
   @override
@@ -95,11 +97,15 @@ class SignUpScreen extends StatelessWidget {
                                             ? const CircularProgressIndicator()
                                             : SocialButton(
                                                 text: "Facebook",
-                                                asset:
-                                                    AppConstants.facebookIcon,
-                                                onPressed: () =>
-                                                    facebookController
-                                                        .loginWithFacebook(),
+                                                asset: AppConstants.facebookIcon,
+                                                onPressed: () async {
+                                                  bool success = await facebookController.loginWithFacebook();
+                                                  if (success) {
+                                                    final prefs = await SharedPreferences.getInstance();
+                                                    await prefs.setBool('isLoggedIn', true);
+                                                    Get.offAll(() => FeedScreen());
+                                                  }
+                                                },
                                               ),
                                       ),
                                       Obx(
@@ -109,9 +115,15 @@ class SignUpScreen extends StatelessWidget {
                                             : SocialButton(
                                                 text: "Google",
                                                 asset: AppConstants.googleIcon,
-                                                onPressed: () =>
-                                                    googleAuthController
-                                                        .signInWithGoogle(),
+                                                onPressed: () async {
+                                                  bool success = await googleAuthController.signInWithGoogle();
+                                                  if (success) {
+                                                    final prefs = await SharedPreferences.getInstance();
+                                                    await prefs.setBool('isLoggedIn', true);
+                                                    Get.offAll(
+                                                        () => FeedScreen());
+                                                  }
+                                                },
                                               ),
                                       ),
                                     ],
@@ -172,13 +184,26 @@ class SignUpScreen extends StatelessWidget {
                                         horizontalPercent: 0.02),
                                     child: Obx(
                                       () => authController.isLoading.value
-                                          ? CircularProgressIndicator()
+                                          ? const CircularProgressIndicator()
                                           : ButtonWidgets(
                                               onTap: () async {
-                                                final success = await authController.registerSubmit();
-                                                success ? Get.to(FeedScreen()) : Get.off(SignUpScreen());
+                                                bool isSuccess =
+                                                    await authController
+                                                        .registerSubmit();
+                                                if (isSuccess) {
+                                                  final prefs =
+                                                      await SharedPreferences
+                                                          .getInstance();
+                                                  await prefs.setBool(
+                                                      'isLoggedIn', true);
+                                                  Get.offAll(
+                                                      () => FeedScreen());
+                                                } else {
+                                                  Get.off(SignUpScreen());
+                                                }
                                               },
-                                              buttonText: AppConstants.createAccountText,
+                                              buttonText:
+                                                  AppConstants.loginTitle,
                                             ),
                                     ),
                                   ),

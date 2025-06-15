@@ -169,17 +169,4 @@ class AuthController extends GetxController {
     blockController.dispose();
     super.onClose();
   }
-
-  /// Log out and clear local data
-  Future<void> logout() async {
-    try {
-      await authService.logout();
-      await GetStorage().erase();
-      currentUser = null;
-      DialogUtils.showSnackbar("Success", "Logged out successfully");
-      Get.offAll(() => LoginScreen());
-    } catch (e) {
-      DialogUtils.showSnackbar("Error", "Failed to logout: $e", isError: true);
-    }
-  }
 }

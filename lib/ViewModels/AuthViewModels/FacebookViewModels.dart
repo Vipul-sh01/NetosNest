@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import '../../Services/AuthServices/FacebookAuth.dart';
+import '../../Utility/showSnackbar.dart';
 import '../../Views/FeedScreen.dart';
 import '../../Models/UserModels.dart';
 
@@ -10,21 +11,23 @@ class FacebookController extends GetxController {
   /// Hold the authenticated custom user model
   Rx<UserModel?> currentUser = Rx<UserModel?>(null);
 
-  Future<void> loginWithFacebook() async {
+  Future<bool> loginWithFacebook() async {
     try {
       isLoading.value = true;
       UserModel? loggedInUser = await _authService.signInWithFacebook();
 
       if (loggedInUser != null) {
         currentUser.value = loggedInUser;
-        Get.snackbar("Success", "Logged in successfully");
+        DialogUtils.showSnackbar("Success", "Logged in successfully");
         Get.offAll(() => FeedScreen());
+        return true;
       } else {
-        Get.snackbar("Error", "Login failed");
+        DialogUtils.showSnackbar("Error", "Login failed");
+        return false;
       }
     } catch (e) {
-      print(e.toString());
       Get.snackbar("Error", e.toString());
+      return false;
     } finally {
       isLoading.value = false;
     }

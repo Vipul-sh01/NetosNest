@@ -60,7 +60,7 @@ class OnboardingScreen extends StatelessWidget {
       height: ResponsiveUtils.height(0.01),
       decoration: BoxDecoration(
         color: currentIndex == index
-            ? (isDarkMode ? AppConstants.dotActiveColor : AppConstants.dotActiveColor)
+            ? (isDarkMode ? AppConstants.boxColor : AppConstants.boxColor)
             : (isDarkMode ? AppConstants.dotInactiveColor : Colors.black),
         borderRadius: ResponsiveUtils.circular(0.022),
       ),

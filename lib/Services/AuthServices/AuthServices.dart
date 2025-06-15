@@ -125,15 +125,6 @@ class AuthService {
     }
   }
 
-  /// Logout current user
-  Future<void> logout() async {
-    try {
-      await _auth.signOut();
-    } catch (e) {
-      print('Error logging out: $e');
-    }
-  }
-
   /// Convert mobile to dummy email format if needed
   String _formatToEmail(String input) {
     if (input.contains('@')) return input;
