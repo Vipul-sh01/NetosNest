@@ -5,17 +5,19 @@ import 'package:pdfx/pdfx.dart';
 import '../../ViewModels/PdfViewer/ModulePdfController.dart';
 import '../../Models/NoteModel.dart';
 import '../../Services/PdfService.dart';
+import '../Models/ModuleModels.dart';
 import '../Utility/ResponsiveUtils.dart';
 
 class PdfViewerScreen extends StatelessWidget {
   final NoteModel note;
-  const PdfViewerScreen({Key? key, required this.note}) : super(key: key);
+  final ModuleModel? module;
+  const PdfViewerScreen({Key? key, required this.note, this.module}) : super(key: key);
   
 
   @override
   Widget build(BuildContext context) {
     final ModulePdfController controller =
-    Get.put(ModulePdfController(note, PdfService()));
+    Get.put(ModulePdfController(note: note, module: module, pdfService: PdfService(),));
 
     return Scaffold(
       extendBodyBehindAppBar: true,

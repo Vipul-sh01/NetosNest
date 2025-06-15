@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import '../../Models/ModuleModels.dart';
 import '../../Models/NoteModel.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 import '../../Views/dhsdh.dart';
@@ -15,13 +16,16 @@ class RentCardCustom extends StatelessWidget {
   final String moduleText;
   final String courseName;
   final NoteModel note;
+  final ModuleModel module;
+
   RentCardCustom({
     super.key,
     required this.text,
     required this.moduleText,
     required this.courseName,
     required this.imageUrl,
-    required this.note
+    required this.note,
+    required this.module,
   });
 
   final LightModeController lightModeController = Get.put(LightModeController());
@@ -44,7 +48,7 @@ class RentCardCustom extends StatelessWidget {
               children: [
                 ContainerRow(text: text, moduleText: moduleText, courseName: courseName,),
                 SizedBox(height: ResponsiveUtils.height(0.015)),
-                RentImage(imageUrl: imageUrl, onTap: () {Get.to(PdfViewerScreen(note: note,));  },)
+                RentImage(imageUrl: imageUrl, onTap: () {Get.to(PdfViewerScreen(note: note, module: module,));  },)
               ],
             ),
           ),

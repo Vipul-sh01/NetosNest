@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import '../../Models/ModuleModels.dart';
 import '../../Models/NoteModel.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 import '../../Views/PaymentCardScreen.dart';
@@ -19,6 +20,7 @@ class RentNotesCard extends StatelessWidget {
   final String priceText;
   final String courseNames;
   final NoteModel note;
+  final ModuleModel module;
   RentNotesCard({
     super.key,
     this.text,
@@ -26,7 +28,8 @@ class RentNotesCard extends StatelessWidget {
     required this.priceText,
     required this.courseNames,
     required this.imageUrl,
-    required this.note
+    required this.note,
+    required this.module,
   });
 
   final LightModeController lightModeController = Get.put(LightModeController());
@@ -50,7 +53,7 @@ class RentNotesCard extends StatelessWidget {
               children: [
                 ContainerRow(text: text, moduleText: moduleText, courseName: courseNames,),
                 SizedBox(height: ResponsiveUtils.height(0.02)),
-                RentImage(imageUrl: imageUrl, onTap: () { Get.to(PdfViewerScreen(note: note,)); },),
+                RentImage(imageUrl: imageUrl, onTap: () { Get.to(PdfViewerScreen(note: note, module: module,)); },),
                 SizedBox(height: ResponsiveUtils.height(0.02)),
                 RentOfferContainer(text: priceText,),
                 SizedBox(height: ResponsiveUtils.height(0.02)),

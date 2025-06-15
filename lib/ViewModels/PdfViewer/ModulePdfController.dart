@@ -2,18 +2,22 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:get/get.dart';
 import 'package:pdfx/pdfx.dart';
-import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-
 import '../../Models/NoteModel.dart';
+import '../../Models/ModuleModels.dart';
 import '../../Services/PdfService.dart';
 import '../../Widgets/AccessDenined.dart';
 
 class ModulePdfController extends GetxController {
   final NoteModel note;
+  final ModuleModel? module;
   final PdfService _pdfService;
 
-  ModulePdfController(this.note, this._pdfService);
+  ModulePdfController({
+    required this.note,
+    this.module,
+    required PdfService pdfService,
+  }) : _pdfService = pdfService;
 
   PdfControllerPinch? pdfController;
   final isLoading = true.obs;
@@ -32,27 +36,27 @@ class ModulePdfController extends GetxController {
     isLoading.value = true;
 
     try {
-      // Get the fileUrl
-      final String url = _getPdfUrl();
+      final String url = module?.fileUrl ?? note.modules.first.fileUrl;
 
       if (url.isEmpty) {
         throw Exception("PDF URL is empty.");
       }
-      // Fetch the PDF bytes
+
       final Uint8List pdfBytes = await _pdfService.getPdfBytes(url);
 
       if (pdfBytes.isEmpty) {
         throw Exception("Fetched PDF bytes are empty.");
       }
 
-      // Save the PDF to a temporary file
       final tempDir = await getTemporaryDirectory();
-      final tempFile = File('${tempDir.path}/temp_pdf.pdf');
+      final tempFile = File('${tempDir.path}/temp_${DateTime.now().millisecondsSinceEpoch}.pdf');
       await tempFile.writeAsBytes(pdfBytes);
 
-      // Open the PDF document from the saved file
+
       final document = await PdfDocument.openFile(tempFile.path);
       pdfController = PdfControllerPinch(document: Future.value(document));
+
+      allowAllPages.value = module?.isPurchased ?? true;
 
       errorMessage.value = null;
     } catch (e, stackTrace) {
@@ -62,27 +66,12 @@ class ModulePdfController extends GetxController {
     }
   }
 
-  String _getPdfUrl() {
-    final moduleWithFileUrl = note.modules.firstWhereOrNull(
-          (m) => m.fileUrl.isNotEmpty,
-    );
-
-    if (moduleWithFileUrl != null) {
-      allowAllPages.value = moduleWithFileUrl.isPurchased;
-      return moduleWithFileUrl.fileUrl;
-    }
-
-    throw Exception('No valid fileUrl available.');
-  }
-
   void handlePageChanged(int page) {
-    if (!allowAllPages.value && page > 3) {
+    if (!(allowAllPages.value) && page > 3) {
       pdfController?.jumpToPage(2);
       showAccessDeniedDialog();
     }
   }
-
-
 
   @override
   void onClose() {

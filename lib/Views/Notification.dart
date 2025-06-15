@@ -67,6 +67,7 @@ class NotificationScreen extends StatelessWidget {
                       courseName: note.courseName,
                       imageUrl: module.previewUrl ?? '',
                       note: note,
+                      module: module,
                     ),
                   );
                 },

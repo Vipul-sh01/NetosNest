@@ -63,6 +63,7 @@ class RentCard extends StatelessWidget {
                     courseNames: note.courseName,
                     imageUrl: module.previewUrl ?? '',
                     note: note,
+                    module: module,
                   );
                 },
               ),
