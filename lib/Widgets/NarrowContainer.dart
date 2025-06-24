@@ -14,13 +14,13 @@ class NarrowContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: ResponsiveUtils.height(0.02),
+      height: ResponsiveUtils.height(0.01),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isLightMode ? Colors.black : Colors.white,
+        color: isLightMode ? AppConstants.appBackGroundColor : Colors.white,
           borderRadius: ResponsiveUtils.borderRadiusOnly(
-            bottomRight: 0.04,
-            bottomLeft: 0.04,
+            bottomRight: 0.025,
+            bottomLeft: 0.025,
           )
       ),
     );

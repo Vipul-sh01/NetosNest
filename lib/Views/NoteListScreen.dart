@@ -36,7 +36,7 @@ class NoteListScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: lightModeController.isLightMode.value ? Colors.white : Colors.black,
       appBar: AppBar(
-        backgroundColor: lightModeController.isLightMode.value ? Colors.black : Colors.white,
+        backgroundColor: lightModeController.isLightMode.value ? AppConstants.appBackGroundColor : Colors.white,
         automaticallyImplyLeading: true,
         leading: BackWidget(
           onTap: () => Get.back(),
@@ -50,14 +50,6 @@ class NoteListScreen extends StatelessWidget {
         ),
         elevation: 0,
         centerTitle: true,
-        actions: [
-          BackWidget(
-            onTap: () {},
-            imagePath: lightModeController.isLightMode.value
-                ? AppConstants.whiteSettingIcon
-                : AppConstants.blackSettingIcon,
-          ),
-        ],
       ),
       body: Obx(() {
         if (noteController.isLoading.value) {

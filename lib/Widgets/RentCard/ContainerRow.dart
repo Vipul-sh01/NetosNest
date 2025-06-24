@@ -34,13 +34,13 @@ class ContainerRow extends StatelessWidget {
                     courseName ?? "CSE 2005",
                     style: TextStyle(
                       color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                      fontSize: ResponsiveUtils.fontSize(0.04),
+                      fontSize: ResponsiveUtils.fontSize(0.03),
                     ),
                   ),
                   SizedBox(width: ResponsiveUtils.width(0.02)),
                   Container(
-                    width: ResponsiveUtils.width(0.21),
-                    height: ResponsiveUtils.height(0.028),
+                    width: ResponsiveUtils.width(0.15),
+                    height: ResponsiveUtils.height(0.021),
                     padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.01,verticalPercent: 0.0019),
                     decoration: BoxDecoration(
                       color: AppConstants.boxColor,
@@ -59,12 +59,12 @@ class ContainerRow extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: ResponsiveUtils.height(0.01)),
+              SizedBox(height: ResponsiveUtils.height(0.002)),
               Text(
                 text ?? '',
                 style: TextStyle(
                   color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                  fontSize: ResponsiveUtils.fontSize(0.056),
+                  fontSize: ResponsiveUtils.fontSize(0.045),
                 ),
                 softWrap: true,
               ),
@@ -72,8 +72,8 @@ class ContainerRow extends StatelessWidget {
           ),
         ),
         Container(
-          width: ResponsiveUtils.width(0.39),
-          height: ResponsiveUtils.height(0.11),
+          width: ResponsiveUtils.width(0.28),
+          height: ResponsiveUtils.height(0.08),
           decoration: BoxDecoration(
             color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
             borderRadius: ResponsiveUtils.circular(0.02),
@@ -89,16 +89,16 @@ class ContainerRow extends StatelessWidget {
                   Text(
                     'Modules \nCovered',
                     style: TextStyle(
-                      fontSize: ResponsiveUtils.fontSize(0.056),
+                      fontSize: ResponsiveUtils.fontSize(0.04),
                     ),
                   ),
                 ],
               ),
-              SizedBox(width: ResponsiveUtils.width(0.02)),
+              SizedBox(width: ResponsiveUtils.width(0.01)),
               Text(
                 moduleText ?? '',
                 style: TextStyle(
-                  fontSize: ResponsiveUtils.fontSize(0.13),
+                  fontSize: ResponsiveUtils.fontSize(0.1),
                 ),
               ),
             ],

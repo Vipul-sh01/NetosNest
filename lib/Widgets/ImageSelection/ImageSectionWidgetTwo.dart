@@ -50,7 +50,7 @@ class ImageSectionWidgetTwo extends StatelessWidget {
                 duration: const Duration(milliseconds: 300),
                 margin: ResponsiveUtils.marginSymmetric(horizontalPercent: 0.01),
                 height: ResponsiveUtils.height(0.01),
-                width: ResponsiveUtils.width(0.02),
+                width: ResponsiveUtils.width(0.015),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: controller.currentPage1.value == index
@@ -59,8 +59,8 @@ class ImageSectionWidgetTwo extends StatelessWidget {
                   border: Border.all(
                     color: controller.currentPage1.value == index
                         ? AppConstants.darkContainerColor
-                        : AppConstants.iconNoteColors,
-                    width: ResponsiveUtils.width(0.006),
+                        : AppConstants.textColor,
+                    width: ResponsiveUtils.width(0.002),
                   ),
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:NotesNest/Constents/AppConstents.dart';
 import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,17 +38,17 @@ class RentCardCustom extends StatelessWidget {
         padding: ResponsiveUtils.paddingAll(0.02),
         child: Container(
           width: double.infinity,
-          height: ResponsiveUtils.height(0.32),
+          height: ResponsiveUtils.height(0.25),
           decoration: BoxDecoration(
             borderRadius: ResponsiveUtils.circular(0.02),
-            color: lightModeController.isLightMode.value ? Colors.black : Colors.white,
+            color: lightModeController.isLightMode.value ? AppConstants.topNotesIcons : Colors.white,
           ),
           child: Padding(
-            padding: ResponsiveUtils.paddingAll(0.03),
+            padding: ResponsiveUtils.paddingAll(0.024),
             child: Column(
               children: [
                 ContainerRow(text: text, moduleText: moduleText, courseName: courseName,),
-                SizedBox(height: ResponsiveUtils.height(0.015)),
+                SizedBox(height: ResponsiveUtils.height(0.01)),
                 RentImage(imageUrl: imageUrl, onTap: () {Get.to(PdfViewerScreen(note: note, module: module,));  },)
               ],
             ),

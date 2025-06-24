@@ -1,3 +1,4 @@
+import 'package:NotesNest/Constents/AppConstents.dart';
 import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,13 +34,13 @@ class SearchCard extends StatelessWidget {
         padding: ResponsiveUtils.paddingAll(0.017),
         child: Container(
           padding: ResponsiveUtils.paddingOnly(
-              topPercent: 0.01,
-              bottomPercent: 0.02,
-              leftPercent: 0.03,
-              rightPercent: 0.048),
+              topPercent: 0.005,
+              bottomPercent: 0.012,
+              leftPercent: 0.025,
+              rightPercent: 0.04),
           decoration: BoxDecoration(
             color: lightModeController.isLightMode.value
-                ? Colors.black
+                ? AppConstants.topNotesIcons
                 : Colors.white,
             borderRadius: ResponsiveUtils.circular(0.02),
           ),
@@ -97,8 +98,8 @@ class SearchCard extends StatelessWidget {
                           ),
                   ),
                   Positioned(
-                    bottom: ResponsiveUtils.height(-0.02),
-                    right: ResponsiveUtils.width(-0.05),
+                    bottom: ResponsiveUtils.height(-0.016),
+                    right: ResponsiveUtils.width(-0.04),
                     child: Container(
                       padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.0156, verticalPercent: 0.003),
                       decoration: BoxDecoration(
@@ -109,7 +110,7 @@ class SearchCard extends StatelessWidget {
                         "+2",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: ResponsiveUtils.fontSize(0.037),
+                          fontSize: ResponsiveUtils.fontSize(0.03),
                           fontWeight: FontWeight.bold,
                         ),
                       ),

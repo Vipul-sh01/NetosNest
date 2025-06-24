@@ -12,6 +12,7 @@ import '../Widgets/Feed/SearchCard.dart';
 import '../Widgets/Feed/SearchSort.dart';
 import '../Widgets/FliterShort/showFilterSheet.dart';
 import '../Widgets/NarrowContainer.dart';
+import 'FeedScreen.dart';
 import 'Notification.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -48,13 +49,13 @@ class SearchScreen extends StatelessWidget {
         backgroundColor:
             lightModeController.isLightMode.value ? Colors.white : Colors.black,
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           backgroundColor: lightModeController.isLightMode.value
-              ? Colors.black
+              ? AppConstants.appBackGroundColor
               : Colors.white,
           leading: BackWidget(
             onTap: () {
-              Get.back();
+              Get.off(()=> FeedScreen());
             },
             imagePath: lightModeController.isLightMode.value
                 ? AppConstants.backWhiteIcon
@@ -66,16 +67,6 @@ class SearchScreen extends StatelessWidget {
           ),
           elevation: 0,
           centerTitle: true,
-          actions: [
-            BackWidget(
-              onTap: () {
-                // Add settings navigation logic here
-              },
-              imagePath: lightModeController.isLightMode.value
-                  ? AppConstants.whiteSettingIcon
-                  : AppConstants.blackSettingIcon,
-            ),
-          ],
         ),
         body: Column(
           children: [

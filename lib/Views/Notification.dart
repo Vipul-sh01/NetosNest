@@ -24,9 +24,9 @@ class NotificationScreen extends StatelessWidget {
         backgroundColor:
             lightModeController.isLightMode.value ? Colors.white : Colors.black,
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           backgroundColor: lightModeController.isLightMode.value
-              ? Colors.black
+              ? AppConstants.appBackGroundColor
               : Colors.white,
           leading: BackWidget(
             onTap: () {},
@@ -40,14 +40,6 @@ class NotificationScreen extends StatelessWidget {
           ),
           elevation: 0,
           centerTitle: true,
-          actions: [
-            BackWidget(
-              onTap: () {},
-              imagePath: lightModeController.isLightMode.value
-                  ? AppConstants.whiteSettingIcon
-                  : AppConstants.blackSettingIcon,
-            ),
-          ],
         ),
         body: Column(
           children: [
@@ -59,7 +51,7 @@ class NotificationScreen extends StatelessWidget {
                   final module = note.modules[index];
                   return GestureDetector(
                     onTap: () {
-                      Get.to(() => RentCard(note: note,));
+                      // Get.to(() => RentCard(note: note,));
                     },
                     child: RentCardCustom(
                       text: note.subject ?? "N/A",

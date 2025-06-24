@@ -19,7 +19,7 @@ class AppStyles {
 
   static TextStyle get textStyleLargeBold => TextStyle(
     color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-    fontSize: ResponsiveUtils.fontSize(0.05),
+    fontSize: ResponsiveUtils.fontSize(0.048),
     fontWeight: FontWeight.bold,
   );
 
@@ -102,12 +102,12 @@ class AppStyles {
 
   static TextStyle get normalText => TextStyle(
     color: lightModeController.isLightMode.value ? Colors.white70 : Colors.black87,
-    fontSize: ResponsiveUtils.fontSize(0.038),
+    fontSize: ResponsiveUtils.fontSize(0.03),
   );
 
   static TextStyle get boldUnderlinedText => TextStyle(
     color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-    fontSize: ResponsiveUtils.fontSize(0.04),
+    fontSize: ResponsiveUtils.fontSize(0.03),
     fontWeight: FontWeight.bold,
     decoration: TextDecoration.underline,
   );

@@ -73,7 +73,7 @@ class SignUpScreen extends StatelessWidget {
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: lightModeController.isLightMode.value
-                                  ? Colors.black
+                                  ? AppConstants.loginPage
                                   : Colors.white,
                               borderRadius: ResponsiveUtils.borderRadiusOnly(
                                 topLeft: 0.08,

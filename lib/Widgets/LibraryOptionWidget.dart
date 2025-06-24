@@ -11,8 +11,10 @@ class LibraryOptionWidget extends StatelessWidget {
   final String iconPath;
   final String label;
   final VoidCallback onTap;
+  final Color containerColor;
+  final Color svgColor;
 
-  LibraryOptionWidget({super.key, required this.iconPath, required this.label, required this.onTap});
+  LibraryOptionWidget({super.key, required this.iconPath, required this.label, required this.onTap, required this.containerColor, required this.svgColor});
 
   final LightModeController lightModeController = Get.put(LightModeController());
 
@@ -26,7 +28,7 @@ class LibraryOptionWidget extends StatelessWidget {
           width: ResponsiveUtils.width(0.30),
           padding: ResponsiveUtils.paddingOnly(leftPercent: 0.01, rightPercent: 0.01),
           decoration: BoxDecoration(
-            color: lightModeController.isLightMode.value ? AppConstants.darkContainerColor : AppConstants.lightContainerColor,
+            color: containerColor,
             borderRadius: ResponsiveUtils.circular(0.02)
           ),
           child: Row(
@@ -39,7 +41,7 @@ class LibraryOptionWidget extends StatelessWidget {
                   iconPath,
                   fit: BoxFit.contain,
                   colorFilter: ColorFilter.mode(
-                    lightModeController.isLightMode.value ? Colors.black : Colors.white,
+                    svgColor,
                     BlendMode.srcIn,
                   ),
                 ),

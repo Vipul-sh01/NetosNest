@@ -30,11 +30,13 @@ class UploadNoteScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         backgroundColor:
-            lightModeController.isLightMode.value ? Colors.black : Colors.white,
+            lightModeController.isLightMode.value ? AppConstants.appBackGroundColor : Colors.white,
         leading: BackWidget(
-          onTap: () {},
+          onTap: () {
+            Get.off(()=> FeedScreen());
+          },
           imagePath: lightModeController.isLightMode.value
               ? AppConstants.backWhiteIcon
               : AppConstants.backBlackIcon,
@@ -45,16 +47,6 @@ class UploadNoteScreen extends StatelessWidget {
         ),
         elevation: 0,
         centerTitle: true,
-        actions: [
-          BackWidget(
-            onTap: () {
-              Get.to(AddUsers());
-            },
-            imagePath: lightModeController.isLightMode.value
-                ? AppConstants.whiteSettingIcon
-                : AppConstants.blackSettingIcon,
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -133,7 +125,7 @@ class UploadNoteScreen extends StatelessWidget {
                           width: ResponsiveUtils.width(0.96),
                           padding: ResponsiveUtils.paddingAll(0.04),
                           decoration: BoxDecoration(
-                            color: Colors.black,
+                            color: lightModeController.isLightMode.value ? AppConstants.appBackGroundColor : Colors.white,
                             borderRadius: ResponsiveUtils.circular(0.02),
                             boxShadow: [
                               BoxShadow(

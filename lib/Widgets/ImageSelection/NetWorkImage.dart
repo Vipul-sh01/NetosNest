@@ -41,7 +41,7 @@ class ImageContainers extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
-              blurRadius: ResponsiveUtils.blurRadius(0.025),
+              blurRadius: ResponsiveUtils.blurRadius(0.00),
               offset: ResponsiveUtils.shadowOffset(x: 0.001, y: 0.001),
             ),
           ],

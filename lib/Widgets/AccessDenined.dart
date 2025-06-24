@@ -79,7 +79,7 @@ void showAccessDeniedDialog() {
                   child: ElevatedButton.icon(
                     onPressed: () {
                       Get.back();
-                      Get.to(() => PaymentScreen());
+                      // Get.to(() => PaymentScreen());
                     },
                     icon: const Icon(Icons.lock_open, size: 18),
                     label: const Text('Unlock Now'),

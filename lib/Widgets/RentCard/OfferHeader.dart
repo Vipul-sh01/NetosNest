@@ -24,13 +24,13 @@ class OfferHeader extends StatelessWidget {
             courseName ?? "CSE 2005",
             style: TextStyle(
               color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-              fontSize: ResponsiveUtils.fontSize(0.036),
+              fontSize: ResponsiveUtils.fontSize(0.03),
             ),
           ),
           SizedBox(width: ResponsiveUtils.width(0.02)),
           Container(
-            width: ResponsiveUtils.width(0.21),
-            height: ResponsiveUtils.height(0.028),
+            width: ResponsiveUtils.width(0.15),
+            height: ResponsiveUtils.height(0.021),
             padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.01,verticalPercent: 0.0019),
             decoration: BoxDecoration(
               color: color,

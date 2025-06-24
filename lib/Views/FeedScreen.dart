@@ -7,7 +7,6 @@ import '../ViewModels/DarkModeViewModels.dart';
 import '../ViewModels/ImageSectionViewModels.dart';
 import '../ViewModels/ThreeNoteViewModels.dart';
 import '../Widgets/BottonBar/BottomBar.dart';
-import '../Widgets/Buttons/BackWidgets.dart';
 import '../Widgets/ImageSelection/ImageSectionWidget.dart';
 import '../Widgets/ImageSelection/ImageSectionWidgetThree.dart';
 import '../Widgets/ImageSelection/ImageSectionWidgetTwo.dart';
@@ -16,67 +15,48 @@ import '../Widgets/NarrowContainer.dart';
 import 'NoteListScreen.dart';
 
 class FeedScreen extends StatelessWidget {
-  final ImageSectionController imageController = Get.put(ImageSectionController());
-  final LightModeController lightModeController = Get.put(LightModeController());
-  final ThreeNoteController threeNoteController = Get.put(ThreeNoteController());
+  final ImageSectionController imageController =
+      Get.put(ImageSectionController());
+  final LightModeController lightModeController =
+      Get.put(LightModeController());
+  final ThreeNoteController threeNoteController =
+      Get.put(ThreeNoteController());
 
   FeedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        backgroundColor:
-            lightModeController.isLightMode.value ? Colors.white : Colors.black,
+    return Obx(() {
+      final isLightMode = lightModeController.isLightMode.value;
+      final textColor = isLightMode ? Colors.black : Colors.white;
+
+      return Scaffold(
+        backgroundColor: isLightMode ? Colors.white : Colors.black,
         appBar: AppBar(
-          automaticallyImplyLeading: true,
-          backgroundColor: lightModeController.isLightMode.value
-              ? Colors.black
-              : Colors.white,
-          leading: BackWidget(
-            onTap: () {},
-            imagePath: lightModeController.isLightMode.value
-                ? AppConstants.backWhiteIcon
-                : AppConstants.backBlackIcon,
-          ),
+          automaticallyImplyLeading: false,
+          backgroundColor:
+              isLightMode ? AppConstants.appBackGroundColor : Colors.white,
           title: Text(
             AppConstants.noteSwapTexts,
             style: AppStyles.textStyleLargeBold,
           ),
           elevation: 0,
           centerTitle: true,
-          actions: [
-            BackWidget(
-              onTap: () {},
-              imagePath: lightModeController.isLightMode.value
-                  ? AppConstants.whiteSettingIcon
-                  : AppConstants.blackSettingIcon,
-            ),
-          ],
         ),
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Profile Container
-              NarrowContainer(
-                isLightMode: lightModeController.isLightMode.value,
-              ),
+              NarrowContainer(isLightMode: isLightMode),
               SizedBox(height: ResponsiveUtils.height(0.02)),
-              Padding(padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.03),
+              Padding(
+                padding:
+                    ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.03),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Explore our Library",
-                      style: TextStyle(
-                        fontSize: ResponsiveUtils.fontSize(0.039),
-                        fontWeight: FontWeight.bold,
-                        color: lightModeController.isLightMode.value
-                            ? Colors.black
-                            : Colors.white,
-                      ),
-                    ),
+                    _buildSectionTitle("Explore our Library", textColor),
                     SizedBox(height: ResponsiveUtils.height(0.013)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,59 +64,42 @@ class FeedScreen extends StatelessWidget {
                         LibraryOptionWidget(
                           iconPath: AppConstants.container1Icon,
                           label: "Available Notes",
-                          onTap: () {
-                            Get.to(NoteListScreen());
-                          },
+                          onTap: () => Get.to(NoteListScreen()),
+                          containerColor: isLightMode
+                              ? AppConstants.availNotes
+                              : AppConstants.lightContainerColor,
+                          svgColor: isLightMode ? AppConstants.availNotesIcons : Colors.white,
                         ),
                         LibraryOptionWidget(
                           iconPath: AppConstants.container2Icon,
                           label: "Newly added",
                           onTap: () {},
+                          containerColor: isLightMode
+                              ? AppConstants.newlyNotes
+                              : AppConstants.lightContainerColor,
+                          svgColor: isLightMode ? AppConstants.newlyNotesIcons : Colors.white,
                         ),
                         LibraryOptionWidget(
                           iconPath: AppConstants.container3Icon,
                           label: "Top selling",
                           onTap: () {},
+                          containerColor: isLightMode
+                              ? AppConstants.topNotes
+                              : AppConstants.lightContainerColor,
+                          svgColor: isLightMode ? AppConstants.topNotesIcons : Colors.white,
                         ),
                       ],
                     ),
-                    SizedBox(height: ResponsiveUtils.height(0.013)),
-                    Text(
-                      "Explore the Departments",
-                      style: TextStyle(
-                        fontSize: ResponsiveUtils.fontSize(0.039),
-                        fontWeight: FontWeight.bold,
-                        color: lightModeController.isLightMode.value
-                            ? Colors.black
-                            : Colors.white,
-                      ),
-                    ),
+                    SizedBox(height: ResponsiveUtils.height(0.02)),
+                    _buildSectionTitle("Explore the Departments", textColor),
                     SizedBox(height: ResponsiveUtils.height(0.013)),
                     ImageSectionWidget(controller: imageController),
-                    SizedBox(height: ResponsiveUtils.height(0.018)),
-                    Text(
-                      "GET HANDWRITTEN NOTES",
-                      style: TextStyle(
-                        fontSize: ResponsiveUtils.fontSize(0.039),
-                        fontWeight: FontWeight.bold,
-                        color: lightModeController.isLightMode.value
-                            ? Colors.black
-                            : Colors.white,
-                      ),
-                    ),
+                    SizedBox(height: ResponsiveUtils.height(0.02)),
+                    _buildSectionTitle("Get Handwritten Notes", textColor),
                     SizedBox(height: ResponsiveUtils.height(0.013)),
-                    ImageSectionWidgetTwo(controller: imageController,),
-                    SizedBox(height: ResponsiveUtils.height(0.018)),
-                    Text(
-                      "SELL YOUR NOTES",
-                      style: TextStyle(
-                        fontSize: ResponsiveUtils.fontSize(0.039),
-                        fontWeight: FontWeight.bold,
-                        color: lightModeController.isLightMode.value
-                            ? Colors.black
-                            : Colors.white,
-                      ),
-                    ),
+                    ImageSectionWidgetTwo(controller: imageController),
+                    SizedBox(height: ResponsiveUtils.height(0.02)),
+                    _buildSectionTitle("Sell Your Notes", textColor),
                     SizedBox(height: ResponsiveUtils.height(0.013)),
                     ImageSectionWidgetThree(controller: imageController),
                   ],
@@ -146,6 +109,17 @@ class FeedScreen extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BottomNavBar(),
+      );
+    });
+  }
+
+  Widget _buildSectionTitle(String title, Color color) {
+    return Text(
+      title,
+      style: TextStyle(
+        fontSize: ResponsiveUtils.fontSize(0.035),
+        fontWeight: FontWeight.bold,
+        color: color,
       ),
     );
   }

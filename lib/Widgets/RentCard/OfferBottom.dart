@@ -24,7 +24,7 @@ class OfferBottom extends StatelessWidget {
               text ?? '',
               style: TextStyle(
                 color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                fontSize: ResponsiveUtils.fontSize(0.050)
+                fontSize: ResponsiveUtils.fontSize(0.045)
               ),
               softWrap: true,
             ),

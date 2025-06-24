@@ -37,7 +37,7 @@ class AppConstants {
 
   // Asset Paths
   static const String splashLogo = "assets/r4.png";
-  static const String container1Image = "assets/Designer27.png";
+  static const String container1Image = "assets/department1.png";
   static const String container2Image = "assets/Designer28.png";
   static const String onboardingFirst = "assets/r3.png";
   static const String onboardingTwo = "assets/r2.png";
@@ -75,21 +75,20 @@ class AppConstants {
   // Colors
   static const Color backgroundColor = Colors.white;
   static const Color textColor = Colors.black;
-  static const Color buttonColor = Colors.purple;
-  static const Color dotInactiveColor = Colors.white;
-  static const Color iconColor = Colors.white;
+  static const Color appBackGroundColor = Color(0xFF6B4C9A);
   static const Color boxColor = Color(0xFFD77E63);
-  static const Color backgroundColors = Colors.white;
-  static const Color appBarBackgroundColor = Colors.black;
-  static const Color profileContainerColor = Colors.black;
-  static const Color textColorWhite = Colors.white;
-  static const Color textColorWhite70 = Colors.white70;
-  static const Color textColorBold = Colors.white;
   static const Color navColor = Color(0xFFA6A6A6);
   static const Color darkContainerColor = Color(0xFFD6D6D6);
   static const Color lightContainerColor = Color(0xFF333333);
-  static const Color iconNoteColors = Colors.black;
-  static const Color textNoteColors = Colors.black87;
+  static const Color loginPage = Color(0xFF2B2E3C);
+
+  static const Color availNotes = Color(0xFFFFF3CC);
+  static const Color newlyNotes = Color(0xFFC6F6F6);
+  static const Color topNotes = Color(0xFFD3C7F6);
+
+  static const Color availNotesIcons = Color(0xFFFFA726);
+  static const Color newlyNotesIcons = Color(0xFF00BCD4);
+  static const Color topNotesIcons = Color(0xFF7E57C2);
 
   //SearchCard color
   static const Color searchColors = Color(0xFFD9D9D9);

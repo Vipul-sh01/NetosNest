@@ -27,7 +27,7 @@ class ImageSectionWidgetThree extends StatelessWidget {
           ),
         ),
         // Hollow dots indicator
-        SizedBox(height: 10),
+        SizedBox(height: ResponsiveUtils.height(0.01)),
         Obx(() {
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -35,15 +35,15 @@ class ImageSectionWidgetThree extends StatelessWidget {
               3,
                   (index) => AnimatedContainer(
                 duration: Duration(milliseconds: 300),
-                margin: EdgeInsets.symmetric(horizontal: 4),
-                height: 8,
-                width: 8,
+                    margin: ResponsiveUtils.marginSymmetric(horizontalPercent: 0.01),
+                    height: ResponsiveUtils.height(0.01),
+                    width: ResponsiveUtils.width(0.015),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: controller.currentPage2.value == index ? AppConstants.darkContainerColor : Colors.transparent,
                   border: Border.all(
-                    color: controller.currentPage2.value == index ? AppConstants.darkContainerColor : AppConstants.iconNoteColors,
-                    width: 2,
+                    color: controller.currentPage2.value == index ? AppConstants.darkContainerColor : AppConstants.textColor,
+                    width: ResponsiveUtils.width(0.002),
                   ),
                 ),
               ),

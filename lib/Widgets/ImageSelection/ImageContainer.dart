@@ -8,11 +8,13 @@ class ImageContainer extends StatelessWidget {
   final String imagePath;
   final int index;
   final RxInt currentPage;
+  final Color color;
 
   ImageContainer({
     required this.imagePath,
     required this.index,
     required this.currentPage,
+    required this.color,
   });
 
   final LightModeController lightModeController = Get.put(LightModeController());
@@ -29,9 +31,9 @@ class ImageContainer extends StatelessWidget {
           borderRadius: ResponsiveUtils.circular(0.02),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: ResponsiveUtils.blurRadius(0.025),
-              offset: ResponsiveUtils.shadowOffset(x: 0.001, y: 0.001),
+              color: color,
+              blurRadius: ResponsiveUtils.blurRadius(0.00),
+              // offset: ResponsiveUtils.shadowOffset(x: 0.001, y: 0.001),
             ),
           ],
         ),
@@ -41,7 +43,7 @@ class ImageContainer extends StatelessWidget {
             imagePath,
             fit: BoxFit.fitWidth,
             width: ResponsiveUtils.width(0.29),
-            height: ResponsiveUtils.height(0.19),
+            height: ResponsiveUtils.height(0.165),
             errorBuilder: (context, error, stackTrace) {
               return Container(
                 width: ResponsiveUtils.width(0.29),

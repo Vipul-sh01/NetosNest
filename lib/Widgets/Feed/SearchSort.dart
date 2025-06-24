@@ -39,7 +39,7 @@ class SearchSort extends StatelessWidget {
                         height: ResponsiveUtils.height(0.03),
                         child: TextField(
                           style: TextStyle(
-                            fontSize: ResponsiveUtils.fontSize(0.037),
+                            fontSize: ResponsiveUtils.fontSize(0.03),
                             fontWeight: FontWeight.bold,
                             color: Colors.black54,
                           ),
@@ -54,7 +54,6 @@ class SearchSort extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     SizedBox(width: ResponsiveUtils.width(0.01)),
                     ImageWidget(
                       imagePath: AppConstants.groupSearchIcon,

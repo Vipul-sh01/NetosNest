@@ -9,8 +9,8 @@ import '../ViewModels/UserViewsModels/UserViewsModels.dart';
 import '../Widgets/BottonBar/BottomBar.dart';
 import '../Widgets/Buttons/BackWidgets.dart';
 import '../Widgets/NotesCard.dart';
-import '../Widgets/ProfileAvatar.dart';
 import '../Widgets/TextWidgets.dart';
+import 'FeedScreen.dart';
 import 'UserUpdateProfile.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -27,10 +27,12 @@ class ProfileScreen extends StatelessWidget {
     return Obx(() => Scaffold(
       backgroundColor: lightModeController.isLightMode.value ? Colors.white : Colors.black,
       appBar: AppBar(
-        backgroundColor: lightModeController.isLightMode.value ? Colors.black : Colors.white,
+        backgroundColor: lightModeController.isLightMode.value ? AppConstants.appBackGroundColor : Colors.white,
         automaticallyImplyLeading: true,
         leading: BackWidget(
-          onTap: () {},
+          onTap: () {
+            Get.off(()=> FeedScreen());
+          },
           imagePath: lightModeController.isLightMode.value ? AppConstants.backWhiteIcon : AppConstants.backBlackIcon,
         ),
         title: Text(
@@ -56,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
               height: ResponsiveUtils.height(0.3),
               width: double.infinity,
               decoration: BoxDecoration(
-                color: lightModeController.isLightMode.value ? Colors.black : Colors.white,
+                color: lightModeController.isLightMode.value ? AppConstants.appBackGroundColor : Colors.white,
                 borderRadius: ResponsiveUtils.borderRadiusOnly(
                   bottomRight: 0.05,
                   bottomLeft:  0.05,
@@ -118,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.05, verticalPercent: 0.02),
+              padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.02, verticalPercent: 0.02),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -129,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
                       textOne: authController.currentUser.value?.block ?? '',
                     );
                   }),
-                  SizedBox(height:  ResponsiveUtils.height(0.01)),
+                  SizedBox(height: ResponsiveUtils.height(0.01)),
                   Obx(
                     ()=> DetailItemWidget(
                       text: "Room No",
@@ -137,7 +139,7 @@ class ProfileScreen extends StatelessWidget {
                       textOne: authController.currentUser.value?.roomNo ?? '',
                     ),
                   ),
-                  SizedBox(height:  ResponsiveUtils.height(0.01)),
+                  SizedBox(height: ResponsiveUtils.height(0.01)),
                   Obx(
                     ()=> DetailItemWidget(
                       text: "Department",

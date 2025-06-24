@@ -1,10 +1,10 @@
+import 'package:NotesNest/Constents/AppConstents.dart';
 import 'package:NotesNest/Utility/ResponsiveUtils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DetailItemWidget extends StatelessWidget {
   final String text;
-  final String textOne; // Updated to String
+  final String textOne;
   final bool isLightMode;
 
   const DetailItemWidget({
@@ -16,36 +16,39 @@ class DetailItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: ResponsiveUtils.height(0.013),
+        horizontal: ResponsiveUtils.width(0.02),
+      ),
+      decoration: BoxDecoration(
+        color: isLightMode ? AppConstants.searchColors : AppConstants.newlyNotes,
+        borderRadius: ResponsiveUtils.circular(0.015),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
       child: Row(
         children: [
           Text(
             text,
             style: TextStyle(
-              fontSize: ResponsiveUtils.fontSize(0.059),
-              fontWeight: FontWeight.bold,
+              fontSize: ResponsiveUtils.fontSize(0.03),
+              fontWeight: FontWeight.w600,
               color: isLightMode ? Colors.black : Colors.white,
-              shadows: [
-                Shadow(
-                  offset: Offset(
-                    ResponsiveUtils.width(0.01),
-                    ResponsiveUtils.height(0.01),
-                  ),
-                  blurRadius: ResponsiveUtils.radius(0.005),
-                  color: isLightMode ? Colors.white30 : Colors.black26,
-                ),
-              ],
-
             ),
           ),
           Spacer(),
           Text(
-            textOne, // Directly using String
+            textOne,
             style: TextStyle(
-              fontSize: ResponsiveUtils.fontSize(0.059),
+              fontSize: ResponsiveUtils.fontSize(0.034),
               fontWeight: FontWeight.bold,
-              // color: isLightMode ? Colors.white30 : Colors.black26,
+              color: isLightMode ? Colors.black : Colors.white70,
             ),
           ),
         ],

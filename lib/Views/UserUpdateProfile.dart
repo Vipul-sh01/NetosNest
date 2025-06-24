@@ -12,6 +12,7 @@ import '../Widgets/Buttons/BackWidgets.dart';
 import '../Widgets/Buttons/ButtonWidgets.dart';
 import '../Widgets/Profile/CustomTextFild.dart';
 import '../Widgets/ProfileAvatar.dart';
+import 'FeedScreen.dart';
 import 'ProfileScreen.dart';
 
 class AddUsers extends StatelessWidget {
@@ -27,14 +28,16 @@ class AddUsers extends StatelessWidget {
     return Obx(
       () => Scaffold(
         backgroundColor:
-            lightModeController.isLightMode.value ? Colors.black : Colors.white,
+            lightModeController.isLightMode.value ? AppConstants.appBackGroundColor : Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: true,
           backgroundColor: lightModeController.isLightMode.value
-              ? Colors.black
+              ? AppConstants.appBackGroundColor
               : Colors.white,
           leading: BackWidget(
-            onTap: () {},
+            onTap: () {
+              Get.off(()=> FeedScreen());
+            },
             imagePath: lightModeController.isLightMode.value
                 ? AppConstants.backWhiteIcon
                 : AppConstants.backBlackIcon,
@@ -46,11 +49,16 @@ class AddUsers extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           actions: [
-            BackWidget(
-              onTap: () {},
-              imagePath: lightModeController.isLightMode.value
-                  ? AppConstants.whiteSettingIcon
-                  : AppConstants.blackSettingIcon,
+            IconButton(
+              icon: Icon(
+                lightModeController.isLightMode.value
+                    ? Icons.wb_sunny_outlined
+                    : Icons.nightlight_round,
+                color: lightModeController.isLightMode.value
+                    ? Colors.white
+                    : Colors.black,
+              ),
+              onPressed: lightModeController.toggleLightMode,
             ),
           ],
         ),
@@ -60,20 +68,6 @@ class AddUsers extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                    icon: Icon(
-                      lightModeController.isLightMode.value
-                          ? Icons.wb_sunny_outlined
-                          : Icons.nightlight_round,
-                      color: lightModeController.isLightMode.value
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                    onPressed: lightModeController.toggleLightMode,
-                  ),
-                ),
                 ProfileAvatar(
                   onCameraTap: () {
                     authController.getDialog();
