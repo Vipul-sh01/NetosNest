@@ -1,3 +1,4 @@
+import 'package:NotesNest/Constents/AppConstents.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdfx/pdfx.dart';
@@ -34,7 +35,7 @@ class PdfViewerScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFE3F2FD), Color(0xFFBBDEFB)],
+            colors: [AppConstants.topNotes, AppConstants.appBackGroundColor],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
