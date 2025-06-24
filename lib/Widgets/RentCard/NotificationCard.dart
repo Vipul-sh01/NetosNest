@@ -7,7 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../Models/ModuleModels.dart';
 import '../../Models/NoteModel.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
-import '../../Views/dhsdh.dart';
+import '../../Views/PdfViewer.dart';
 import 'ContainerRow.dart';
 import 'RentImages.dart';
 

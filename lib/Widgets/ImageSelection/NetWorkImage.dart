@@ -5,7 +5,7 @@ import '../../Models/NoteModel.dart';
 import '../../Utility/ResponsiveUtils.dart';
 import '../../Utility/showSnackbar.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
-import '../../Views/dhsdh.dart'; // Remove if unused
+import '../../Views/PdfViewer.dart'; // Remove if unused
 
 class ImageContainers extends StatelessWidget {
   final String imagePath;
