@@ -67,10 +67,10 @@ class ModulePdfController extends GetxController {
   }
 
   void handlePageChanged(int page) {
-    if (!(allowAllPages.value) && page > 3) {
-      pdfController?.jumpToPage(2);
-      showAccessDeniedDialog();
-    }
+    // if (!(allowAllPages.value) && page > 3) {
+    //   pdfController?.jumpToPage(2);
+    //   showAccessDeniedDialog();
+    // }
   }
 
   @override
