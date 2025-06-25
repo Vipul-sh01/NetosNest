@@ -62,6 +62,15 @@ jobs:
 
       - name: Create local.properties
         run: echo "flutter.sdk=$(flutter sdk-path)" > android/local.properties
+      
+
+      - name: Decode google-services.json from secret
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > android/app/google-services.json
+
+      - name: Decode strings.xml
+        run: |
+          echo "${{ secrets.STRINGS_XML_BASE64 }}" | base64 --decode > android/app/src/main/res/values/strings.xml
 
       - name: Install Flutter dependencies
         run: flutter pub get
