@@ -1,9 +1,18 @@
 default_platform(:android)
 
 platform :android do
-  desc "Deploy to Google Play Production"
-  lane :deploy do
+  desc "Deploy to Google Play Internal track"
+  lane :deploy_internal do
     gradle(task: "bundleRelease")
     upload_to_play_store(track: 'internal')
+  end
+
+  desc "Deploy to Google Play Production track with rollout"
+  lane :deploy_production do
+    gradle(task: "bundleRelease")
+    upload_to_play_store(
+      track: 'production',
+      rollout: 0.1 # 10% rollout
+    )
   end
 end

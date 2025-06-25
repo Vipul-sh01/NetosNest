@@ -21,11 +21,14 @@ jobs:
 
       - name: Decode google-services.json from secret
         run: |
-          echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 -d > android/app/google-services.json
+          echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > android/app/google-services.json
 
       - name: Decode strings.xml
         run: |
-          echo "${{ secrets.STRINGS_XML_BASE64 }}" | base64 -d > android/app/src/main/res/values/strings.xml
+          echo "${{ secrets.STRINGS_XML_BASE64 }}" | base64 --decode > android/app/src/main/res/values/strings.xml
+
+      - name: Make gradlew executable
+        run: chmod +x android/gradlew
 
       - name: Install dependencies
         run: flutter pub get
@@ -40,9 +43,11 @@ jobs:
           path: build/app/outputs/bundle/release/app-release.aab
 
       - name: Clean up secrets
-        run: rm android/app/google-services.json
+        run: |
+          rm android/app/google-services.json
+          rm android/app/src/main/res/values/strings.xml
 
-  deploy_to_play_store:
+  deploy_internal:
     needs: build
     runs-on: ubuntu-latest
 
@@ -50,12 +55,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.29.3'
-
-      - name: Download AAB from Build Job
+      - name: Download built AAB
         uses: actions/download-artifact@v4
         with:
           name: flutter-aab
@@ -66,16 +66,55 @@ jobs:
         with:
           ruby-version: 3.1
 
+      - name: Make gradlew executable
+        run: chmod +x android/gradlew
+
       - name: Install Fastlane
         run: |
           cd android
           gem install fastlane
 
-      - name: Deploy to Google Play (Production)
+      - name: Deploy to Internal Track
         env:
           SUPPLY_JSON_KEY: ${{ secrets.SUPPLY_JSON_KEY }}
         run: |
           cd android
           mkdir -p fastlane
           echo "${SUPPLY_JSON_KEY}" > fastlane/service_account_key.json
-          fastlane deploy
+          fastlane deploy_internal
+
+  # deploy_production:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+
+  #     - name: Download built AAB
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: flutter-aab
+  #         path: build/app/outputs/bundle/release/
+
+  #     - name: Setup Ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: 3.1
+
+  #     - name: Make gradlew executable
+  #       run: chmod +x android/gradlew
+
+  #     - name: Install Fastlane
+  #       run: |
+  #         cd android
+  #         gem install fastlane
+
+  #     - name: Deploy to Production Track
+  #       env:
+  #         SUPPLY_JSON_KEY: ${{ secrets.SUPPLY_JSON_KEY }}
+  #       run: |
+  #         cd android
+  #         mkdir -p fastlane
+  #         echo "${SUPPLY_JSON_KEY}" > fastlane/service_account_key.json
+  #         fastlane deploy_production
