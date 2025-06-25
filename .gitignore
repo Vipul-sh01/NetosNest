@@ -19,6 +19,16 @@ google-services.json
 
 app/google-services.json
 
+# Flutter/Dart default ignores
+build/
+.dart_tool/
+.flutter-plugins
+.packages
+
+# Fastlane credentials
+android/fastlane/service_account_key.json
+
+
 # Ignore generated Facebook env strings
 /android/app/build/generated/res/env/
 /android/app/src/main/res/values/strings.xml
