@@ -8,7 +8,8 @@ platform :android do
     upload_to_play_store(
       track: 'internal',
       json_key: './fastlane/service_account_key.json',
-      aab: 'app/build/outputs/bundle/release/app-release.aab'
+      package_name: 'com.notesnest',
+      aab: 'build/app/outputs/bundle/release/app-release.aab'
     )
   end
 
@@ -20,7 +21,8 @@ platform :android do
       track: 'production',
       rollout: 0.1,
       json_key: './fastlane/service_account_key.json',
-      aab: 'app/build/outputs/bundle/release/app-release.aab'
+      package_name: 'com.notesnest',
+      aab: 'build/app/outputs/bundle/release/app-release.aab'
     )
   end
 end
