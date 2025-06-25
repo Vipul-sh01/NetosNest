@@ -19,7 +19,7 @@ jobs:
         with:
           flutter-version: '3.29.3'
 
-      - name: Decode google-services.json
+      - name: Decode google-services.json from secret
         run: |
           echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > android/app/google-services.json
 
@@ -36,7 +36,7 @@ jobs:
       - name: Build App Bundle (.aab)
         run: flutter build appbundle --release
 
-      - name: Upload AAB artifact
+      - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
           name: flutter-aab
@@ -44,8 +44,8 @@ jobs:
 
       - name: Clean up secrets
         run: |
-          rm -f android/app/google-services.json
-          rm -f android/app/src/main/res/values/strings.xml
+          rm android/app/google-services.json
+          rm android/app/src/main/res/values/strings.xml
 
   deploy_internal:
     needs: build
@@ -67,21 +67,24 @@ jobs:
           ruby-version: 3.1
 
       - name: Create local.properties
-        run: |
-          echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
 
       - name: Install Fastlane
-        run: |
-          cd android && gem install fastlane
+        run: gem install fastlane
+        working-directory: android
+
+      - name: Ensure gradlew is executable
+        run: chmod +x gradlew
+        working-directory: android
 
       - name: Deploy to Internal Track
         env:
           SUPPLY_JSON_KEY: ${{ secrets.SUPPLY_JSON_KEY }}
         run: |
-          cd android
           mkdir -p fastlane
           echo "${SUPPLY_JSON_KEY}" > fastlane/service_account_key.json
           fastlane deploy_internal
+        working-directory: android
 
   # deploy_production:
   #   needs: build
@@ -103,18 +106,21 @@ jobs:
   #         ruby-version: 3.1
 
   #     - name: Create local.properties
-  #       run: |
-  #         echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
+  #       run: echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
 
   #     - name: Install Fastlane
-  #       run: |
-  #         cd android && gem install fastlane
+  #       run: gem install fastlane
+  #       working-directory: android
+
+  #     - name: Ensure gradlew is executable
+  #       run: chmod +x gradlew
+  #       working-directory: android
 
   #     - name: Deploy to Production Track
   #       env:
   #         SUPPLY_JSON_KEY: ${{ secrets.SUPPLY_JSON_KEY }}
   #       run: |
-  #         cd android
   #         mkdir -p fastlane
   #         echo "${SUPPLY_JSON_KEY}" > fastlane/service_account_key.json
   #         fastlane deploy_production
+  #       working-directory: android
