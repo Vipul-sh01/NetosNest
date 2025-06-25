@@ -55,6 +55,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.3'
+
+      - name: Create local.properties
+        run: echo "flutter.sdk=$(flutter sdk-path)" > android/local.properties
+
+      - name: Install Flutter dependencies
+        run: flutter pub get
+
       - name: Download built AAB
         uses: actions/download-artifact@v4
         with:
@@ -65,9 +76,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
-
-      - name: Create local.properties
-        run: echo "flutter.sdk=$(flutter sdk-path)" > android/local.properties
 
       - name: Install Fastlane
         run: gem install fastlane
@@ -94,6 +102,17 @@ jobs:
   #     - name: Checkout repository
   #       uses: actions/checkout@v3
 
+  #     - name: Set up Flutter
+  #       uses: subosito/flutter-action@v2
+  #       with:
+  #         flutter-version: '3.29.3'
+
+  #     - name: Create local.properties
+  #       run: echo "flutter.sdk=$(flutter sdk-path)" > android/local.properties
+
+  #     - name: Install Flutter dependencies
+  #       run: flutter pub get
+
   #     - name: Download built AAB
   #       uses: actions/download-artifact@v4
   #       with:
@@ -104,9 +123,6 @@ jobs:
   #       uses: ruby/setup-ruby@v1
   #       with:
   #         ruby-version: 3.1
-
-  #     - name: Create local.properties
-  #       run: echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
 
   #     - name: Install Fastlane
   #       run: gem install fastlane
