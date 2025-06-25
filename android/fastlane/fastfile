@@ -1,0 +1,9 @@
+default_platform(:android)
+
+platform :android do
+  desc "Deploy to Google Play Production"
+  lane :deploy do
+    gradle(task: "bundleRelease")
+    upload_to_play_store(track: 'production')  # 👈 Changed from 'internal' to 'production'
+  end
+end

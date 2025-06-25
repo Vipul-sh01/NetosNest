@@ -11,17 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Set up Flutter SDK
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.29.3'
 
-      # Restore google-services.json from GitHub Secret
       - name: Decode google-services.json from secret
         run: |
           echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 -d > android/app/google-services.json
@@ -30,21 +27,49 @@ jobs:
         run: |
           echo "${{ secrets.STRINGS_XML_BASE64 }}" | base64 -d > android/app/src/main/res/values/strings.xml
 
-      # Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      # Build the APK (For Android)
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Build App Bundle (.aab)
+        run: flutter build appbundle --release
 
-      # Upload build artifacts (Optional)
-      - name: Upload APK
+      - name: Upload APK (Optional)
         uses: actions/upload-artifact@v4
         with:
           name: flutter-apk
           path: build/app/outputs/flutter-apk/app-release.apk
 
-      # Optional: Clean up sensitive files
       - name: Clean up secrets
         run: rm android/app/google-services.json
+
+  deploy_to_play_store:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.3'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+
+      - name: Install Fastlane
+        run: |
+          cd android
+          gem install fastlane
+
+      - name: Deploy to Google Play (Production)
+        env:
+          SUPPLY_JSON_KEY: ${{ secrets.SUPPLY_JSON_KEY }}
+        run: |
+          cd android
+          mkdir -p fastlane
+          echo "${SUPPLY_JSON_KEY}" > fastlane/service_account_key.json
+          fastlane deploy

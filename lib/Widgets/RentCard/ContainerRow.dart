@@ -51,7 +51,7 @@ class ContainerRow extends StatelessWidget {
                         "SCOPE",
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: ResponsiveUtils.fontSize(0.03),
+                          fontSize: ResponsiveUtils.fontSize(0.026),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
