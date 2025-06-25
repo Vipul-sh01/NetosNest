@@ -19,7 +19,7 @@ jobs:
         with:
           flutter-version: '3.29.3'
 
-      - name: Decode google-services.json from secret
+      - name: Decode google-services.json
         run: |
           echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > android/app/google-services.json
 
@@ -36,7 +36,7 @@ jobs:
       - name: Build App Bundle (.aab)
         run: flutter build appbundle --release
 
-      - name: Upload AAB
+      - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: flutter-aab
@@ -44,8 +44,8 @@ jobs:
 
       - name: Clean up secrets
         run: |
-          rm android/app/google-services.json
-          rm android/app/src/main/res/values/strings.xml
+          rm -f android/app/google-services.json
+          rm -f android/app/src/main/res/values/strings.xml
 
   deploy_internal:
     needs: build
@@ -66,13 +66,13 @@ jobs:
         with:
           ruby-version: 3.1
 
-      - name: Make gradlew executable
-        run: chmod +x android/gradlew
+      - name: Create local.properties
+        run: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
 
       - name: Install Fastlane
         run: |
-          cd android
-          gem install fastlane
+          cd android && gem install fastlane
 
       - name: Deploy to Internal Track
         env:
@@ -102,13 +102,13 @@ jobs:
   #       with:
   #         ruby-version: 3.1
 
-  #     - name: Make gradlew executable
-  #       run: chmod +x android/gradlew
+  #     - name: Create local.properties
+  #       run: |
+  #         echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
 
   #     - name: Install Fastlane
   #       run: |
-  #         cd android
-  #         gem install fastlane
+  #         cd android && gem install fastlane
 
   #     - name: Deploy to Production Track
   #       env:
