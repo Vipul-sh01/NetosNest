@@ -16,6 +16,7 @@ migrate_working_dir/
 .env
 .env.*  # e.g., .env.development, .env.production
 google-services.json
+
 app/google-services.json
 
 # Flutter/Dart default ignores
@@ -24,12 +25,14 @@ build/
 .flutter-plugins
 .packages
 
-# Fastlane credentials (don't commit your key!)
+# Fastlane credentials
 android/fastlane/service_account_key.json
+
 
 # Ignore generated Facebook env strings
 /android/app/build/generated/res/env/
 /android/app/src/main/res/values/strings.xml
+
 
 # IntelliJ related
 *.iml
@@ -37,7 +40,7 @@ android/fastlane/service_account_key.json
 *.iws
 .idea/
 
-# VS Code settings (optional)
+# VS Code settings (optional, uncomment if you want to ignore)
 # .vscode/
 
 # Flutter/Dart/Pub related
@@ -48,7 +51,7 @@ android/fastlane/service_account_key.json
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-build/
+/build/
 
 # Symbolication related
 app.*.symbols
@@ -56,12 +59,12 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-# Android Studio build artifacts
-/android/app/debug/
-/android/app/profile/
-/android/app/release/
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
 
-# ✅ Allow Gradle wrapper files (for GitHub Actions, Fastlane, etc.)
+# ✅ Allow Gradle wrapper files (used by CI/CD tools like Fastlane & GitHub Actions)
 !android/gradlew
 !android/gradlew.bat
 !android/gradle/wrapper/gradle-wrapper.properties

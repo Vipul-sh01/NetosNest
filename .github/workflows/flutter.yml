@@ -67,7 +67,7 @@ jobs:
           ruby-version: 3.1
 
       - name: Create local.properties
-        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
+        run: echo "flutter.sdk=$(flutter sdk-path)" > android/local.properties
 
       - name: Install Fastlane
         run: gem install fastlane
