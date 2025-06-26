@@ -5,7 +5,6 @@ plugins {
     id "com.google.gms.google-services"
 }
 
-// 🔑 Load keystore properties
 def keystoreProperties = new Properties()
 def keystorePropertiesFile = rootProject.file("android/key.properties")
 if (keystorePropertiesFile.exists()) {
@@ -18,8 +17,8 @@ android {
     ndkVersion = "25.2.9519653"
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
@@ -35,22 +34,21 @@ android {
     }
 
     signingConfigs {
-    release {
-        if (keystoreProperties['storeFile']) {
-            storeFile file(keystoreProperties['storeFile'])
-        }
-        if (keystoreProperties['storePassword']) {
-            storePassword keystoreProperties['storePassword']
-        }
-        if (keystoreProperties['keyAlias']) {
-            keyAlias keystoreProperties['keyAlias']
-        }
-        if (keystoreProperties['keyPassword']) {
-            keyPassword keystoreProperties['keyPassword']
+        release {
+            if (keystoreProperties.containsKey('storeFile')) {
+                storeFile file("android/" + keystoreProperties['storeFile'])
+            }
+            if (keystoreProperties.containsKey('storePassword')) {
+                storePassword keystoreProperties['storePassword']
+            }
+            if (keystoreProperties.containsKey('keyAlias')) {
+                keyAlias keystoreProperties['keyAlias']
+            }
+            if (keystoreProperties.containsKey('keyPassword')) {
+                keyPassword keystoreProperties['keyPassword']
+            }
         }
     }
-}
-
 
     buildTypes {
         release {
