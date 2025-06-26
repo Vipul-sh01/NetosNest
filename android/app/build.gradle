@@ -35,13 +35,22 @@ android {
     }
 
     signingConfigs {
-        release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
+    release {
+        if (keystoreProperties['storeFile']) {
             storeFile file(keystoreProperties['storeFile'])
+        }
+        if (keystoreProperties['storePassword']) {
             storePassword keystoreProperties['storePassword']
         }
+        if (keystoreProperties['keyAlias']) {
+            keyAlias keystoreProperties['keyAlias']
+        }
+        if (keystoreProperties['keyPassword']) {
+            keyPassword keystoreProperties['keyPassword']
+        }
     }
+}
+
 
     buildTypes {
         release {
