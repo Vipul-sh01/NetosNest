@@ -1,0 +1,60 @@
+name: Deploy to Internal
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy_internal:
+    name: 🚀 Deploy to Internal Track
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.3'
+
+      - name: Create local.properties
+        run: echo "flutter.sdk=$(flutter sdk-path)" > android/local.properties
+
+      - name: Decode google-services.json
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > android/app/google-services.json
+
+      - name: Decode strings.xml
+        run: |
+          echo "${{ secrets.STRINGS_XML_BASE64 }}" | base64 --decode > android/app/src/main/res/values/strings.xml
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Download AAB
+        uses: actions/download-artifact@v4
+        with:
+          name: flutter-aab
+          path: build/app/outputs/bundle/release/
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+
+      - name: Install Fastlane
+        run: gem install fastlane
+        working-directory: android
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+        working-directory: android
+
+      - name: Run Fastlane Internal Deployment
+        env:
+          SUPPLY_JSON_KEY: ${{ secrets.SUPPLY_JSON_KEY }}
+        run: |
+          mkdir -p fastlane
+          echo "${SUPPLY_JSON_KEY}" > fastlane/service_account_key.json
+          fastlane deploy_internal
+        working-directory: android
