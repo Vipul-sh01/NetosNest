@@ -43,7 +43,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x android/gradlew
 
-      - name: Install dependencies
+      - name: Install Flutter dependencies
         run: flutter pub get
 
       - name: Build App Bundle (.aab)
@@ -54,8 +54,11 @@ jobs:
         with:
           name: flutter-aab
           path: build/app/outputs/bundle/release/app-release.aab
+          if-no-files-found: error  
 
       - name: Clean up secrets
         run: |
-          rm android/app/google-services.json
-          rm android/app/src/main/res/values/strings.xml
+          rm -f android/app/google-services.json
+          rm -f android/app/src/main/res/values/strings.xml
+          rm -f android/keystore/release-key.jks
+          rm -f android/keystore.properties
