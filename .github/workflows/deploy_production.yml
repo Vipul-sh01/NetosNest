@@ -1,72 +1,72 @@
-name: Deploy to Production
+# name: Deploy to Production
 
-on:
-  workflow_dispatch:
+# on:
+#   workflow_dispatch:
 
-jobs:
-  build_and_deploy_production:
-    name: 🔨 Build + 🚀 Deploy to Production
-    runs-on: ubuntu-latest
+# jobs:
+#   build_and_deploy_production:
+#     name: 🔨 Build + 🚀 Deploy to Production
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.29.3'
+#       - name: Set up Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: '3.29.3'
 
-      - name: Decode keystore
-        run: |
-          mkdir -p android/keystore
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/keystore/release-key.jks
+#       - name: Decode keystore
+#         run: |
+#           mkdir -p android/keystore
+#           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/keystore/release-key.jks
 
-      - name: Create keystore.properties
-        run: |
-          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/keystore.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
-          echo "storeFile=keystore/release-key.jks" >> android/keystore.properties
+#       - name: Create keystore.properties
+#         run: |
+#           echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/keystore.properties
+#           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
+#           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
+#           echo "storeFile=keystore/release-key.jks" >> android/keystore.properties
 
-      - name: Decode google-services.json
-        run: |
-          echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > android/app/google-services.json
+#       - name: Decode google-services.json
+#         run: |
+#           echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > android/app/google-services.json
 
-      - name: Decode strings.xml
-        run: |
-          echo "${{ secrets.STRINGS_XML_BASE64 }}" | base64 --decode > android/app/src/main/res/values/strings.xml
+#       - name: Decode strings.xml
+#         run: |
+#           echo "${{ secrets.STRINGS_XML_BASE64 }}" | base64 --decode > android/app/src/main/res/values/strings.xml
 
-      - name: Make gradlew executable
-        run: chmod +x android/gradlew
+#       - name: Make gradlew executable
+#         run: chmod +x android/gradlew
 
-      - name: Install Flutter dependencies
-        run: flutter pub get
+#       - name: Install Flutter dependencies
+#         run: flutter pub get
 
-      - name: Build App Bundle (.aab)
-        run: flutter build appbundle --release
+#       - name: Build App Bundle (.aab)
+#         run: flutter build appbundle --release
 
-      - name: Create local.properties
-        run: echo "flutter.sdk=$(flutter sdk-path)" > android/local.properties
+#       - name: Create local.properties
+#         run: echo "flutter.sdk=$(flutter sdk-path)" > android/local.properties
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1
+#       - name: Set up Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: 3.1
 
-      - name: Install Fastlane
-        run: gem install fastlane
-        working-directory: android
+#       - name: Install Fastlane
+#         run: gem install fastlane
+#         working-directory: android
 
-      - name: Ensure gradlew is executable
-        run: chmod +x gradlew
-        working-directory: android
+#       - name: Ensure gradlew is executable
+#         run: chmod +x gradlew
+#         working-directory: android
 
-      - name: Run Fastlane Production Deployment
-        env:
-          SUPPLY_JSON_KEY: ${{ secrets.GOOGLE_PLAY_JSON_BASE64 }}
-        run: |
-          mkdir -p fastlane
-          echo "${GOOGLE_PLAY_JSON_BASE64}" | base64 --decode > android/fastlane/service_account_key.json
-          fastlane deploy_production
-        working-directory: android
+#       - name: Run Fastlane Production Deployment
+#         env:
+#           SUPPLY_JSON_KEY: ${{ secrets.GOOGLE_PLAY_JSON_BASE64 }}
+#         run: |
+#           mkdir -p fastlane
+#           echo "$GOOGLE_PLAY_JSON_BASE64" | base64 --decode > fastlane/service_account_key.json
+#           fastlane deploy_production
+#         working-directory: android
