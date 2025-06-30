@@ -64,9 +64,9 @@ jobs:
 
       - name: Run Fastlane Production Deployment
         env:
-          SUPPLY_JSON_KEY: ${{ secrets.SUPPLY_JSON_KEY }}
+          SUPPLY_JSON_KEY: ${{ secrets.GOOGLE_PLAY_JSON_BASE64 }}
         run: |
           mkdir -p fastlane
-          echo "${SUPPLY_JSON_KEY}" > fastlane/service_account_key.json
+          echo "${GOOGLE_PLAY_JSON_BASE64}" | base64 --decode > android/fastlane/service_account_key.json
           fastlane deploy_production
         working-directory: android
