@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-
 jobs:
   build:
     name: 🔨 Build Flutter App
@@ -31,7 +30,7 @@ jobs:
           echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/keystore.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
-          echo "storeFile=keystore/release-key.jks" >> android/keystore.properties
+          echo "storeFile=android/keystore/release-key.jks" >> android/keystore.properties
 
       - name: Decode google-services.json
         run: |
@@ -44,18 +43,24 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x android/gradlew
 
+      - name: Flutter clean (optional)
+        run: flutter clean
+
       - name: Install Flutter dependencies
         run: flutter pub get
 
       - name: Build App Bundle (.aab)
         run: flutter build appbundle --release
 
+      - name: List AAB file location (debug)
+        run: ls -l build/app/outputs/bundle/release
+
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: flutter-aab
           path: build/app/outputs/bundle/release/app-release.aab
-          if-no-files-found: error  
+          if-no-files-found: error
 
       - name: Clean up secrets
         run: |

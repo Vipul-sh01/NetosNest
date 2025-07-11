@@ -12,8 +12,8 @@ jobs:
     name: 🚀 Deploy to Internal Track
     runs-on: ubuntu-latest
     permissions:
-      actions: read     
-      contents: read    
+      actions: read
+      contents: read
 
     steps:
       - name: Download artifact from triggering workflow
@@ -64,6 +64,6 @@ jobs:
           SUPPLY_JSON_KEY: ${{ secrets.GOOGLE_PLAY_JSON_BASE64 }}
         run: |
           mkdir -p fastlane
-          echo "$GOOGLE_PLAY_JSON_BASE64" | base64 --decode > fastlane/service_account_key.json
+          echo "$SUPPLY_JSON_KEY" | base64 --decode > fastlane/service_account_key.json
           fastlane deploy_internal
         working-directory: android
