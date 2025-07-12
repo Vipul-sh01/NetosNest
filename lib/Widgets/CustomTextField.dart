@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:NotesNest/Constents/AppConstents.dart';
-import '../../Constents/AppStyles.dart';
-import '../../Utility/ResponsiveUtils.dart';
+import 'package:flutter/material.dart';
+import '../Constents/AppStyles.dart';
+import '../Utility/ResponsiveUtils.dart';
+
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -22,7 +23,7 @@ class CustomTextField extends StatelessWidget {
     final isLight = AppStyles.lightModeController.isLightMode.value;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: ResponsiveUtils.height(0.01)),
+      padding: EdgeInsets.symmetric(vertical: ResponsiveUtils.height(0.005)),
       child: TextField(
         controller: controller,
         obscureText: isObscure,
@@ -36,23 +37,15 @@ class CustomTextField extends StatelessWidget {
           fillColor: isLight ? Colors.grey[100] : Colors.grey[850],
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
+            borderSide: const BorderSide(color: Colors.transparent),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
-              color: isLight ? Colors.black26 : Colors.white24,
-              width: 1,
-            ),
+            borderSide: BorderSide(color: isLight ? Colors.black26 : Colors.white24),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
-              color: isLight
-                  ? AppConstants.appBackGroundColor
-                  : Colors.lightBlueAccent,
-              width: 0.8,
-            ),
+            borderSide: BorderSide(color: isLight ? AppConstants.appBackGroundColor : Colors.lightBlueAccent),
           ),
         ),
       ),

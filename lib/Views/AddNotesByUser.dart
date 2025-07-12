@@ -12,6 +12,7 @@ import '../ViewModels/NotesUploadsViewsModels/NoteUploadViewModels.dart';
 import '../Widgets/BottonBar/BottomBar.dart';
 import '../Widgets/Buttons/BackWidgets.dart';
 import '../Widgets/Buttons/ButtonWidgets.dart';
+import '../Widgets/CustomTextField.dart';
 import '../Widgets/NarrowContainer.dart';
 import 'FeedScreen.dart';
 import 'UserUpdateProfile.dart';
@@ -31,11 +32,12 @@ class UploadNoteScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor:
-            lightModeController.isLightMode.value ? AppConstants.appBackGroundColor : Colors.white,
+        backgroundColor: lightModeController.isLightMode.value
+            ? AppConstants.appBackGroundColor
+            : Colors.white,
         leading: BackWidget(
           onTap: () {
-            Get.off(()=> FeedScreen());
+            Get.off(() => FeedScreen());
           },
           imagePath: lightModeController.isLightMode.value
               ? AppConstants.backWhiteIcon
@@ -60,31 +62,30 @@ class UploadNoteScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: ResponsiveUtils.height(0.01)),
-                      TextField(
-                        controller: c.titleController,
-                        decoration: const InputDecoration(labelText: "Title"),
-                      ),
-                      SizedBox(height: ResponsiveUtils.height(0.01)),
-                      TextField(
-                        controller: c.courseCodeController,
-                        decoration:
-                            const InputDecoration(labelText: "Course Code"),
-                      ),
-                      SizedBox(height: ResponsiveUtils.height(0.01)),
-                      TextField(
-                        controller: c.courseNameController,
-                        decoration:
-                            const InputDecoration(labelText: "Course Name"),
-                      ),
-                      SizedBox(height: ResponsiveUtils.height(0.01)),
-                      TextField(
-                        controller: c.subjectController,
-                        decoration: const InputDecoration(labelText: 'Subject'),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextField(
+                            controller: c.titleController,
+                            label: 'Title',
+                          ),
+                          CustomTextField(
+                            controller: c.courseCodeController,
+                            label: 'Course Code',
+                          ),
+                          CustomTextField(
+                            controller: c.courseNameController,
+                            label: 'Course Name',
+                          ),
+                          CustomTextField(
+                            controller: c.subjectController,
+                            label: 'Subject',
+                          ),
+                        ],
                       ),
                       SizedBox(height: ResponsiveUtils.height(0.01)),
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 4),
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: ResponsiveUtils.circular(0.02),
@@ -115,17 +116,17 @@ class UploadNoteScreen extends StatelessWidget {
                       SizedBox(height: ResponsiveUtils.height(0.015)),
                       Text(
                         "Upload Preview of Notes",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: ResponsiveUtils.fontSize(0.039)),
+                        style: AppStyles.boldMediumText,
                       ),
                       SizedBox(height: ResponsiveUtils.height(0.02)),
                       Center(
                         child: Container(
                           width: ResponsiveUtils.width(0.96),
-                          padding: ResponsiveUtils.paddingAll(0.04),
+                          padding: ResponsiveUtils.paddingAll(0.03),
                           decoration: BoxDecoration(
-                            color: lightModeController.isLightMode.value ? AppConstants.appBackGroundColor : Colors.white,
+                            color: lightModeController.isLightMode.value
+                                ? AppConstants.appBackGroundColor
+                                : Colors.white,
                             borderRadius: ResponsiveUtils.circular(0.02),
                             boxShadow: [
                               BoxShadow(
@@ -136,26 +137,23 @@ class UploadNoteScreen extends StatelessWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text("Upload your files",
-                                  style: TextStyle(
-                                      fontSize: ResponsiveUtils.fontSize(0.045),
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white)),
-                              SizedBox(height: ResponsiveUtils.height(0.022)),
+                              Text(
+                                "Upload your files",
+                                style: AppStyles.whiteBoldLarge,
+                              ),
+                              SizedBox(height: ResponsiveUtils.height(0.02)),
                               GestureDetector(
                                 onTap: () => c.pickFile(user),
                                 child: Container(
                                   width: double.infinity,
-                                  padding: ResponsiveUtils.paddingAll(.05),
+                                  padding: ResponsiveUtils.paddingAll(0.02),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius:
-                                        ResponsiveUtils.circular(0.02),
+                                    borderRadius: ResponsiveUtils.circular(0.02),
                                     boxShadow: [
                                       BoxShadow(
                                           color: Colors.black12,
-                                          blurRadius:
-                                              ResponsiveUtils.radius(0.015))
+                                          blurRadius: ResponsiveUtils.radius(0.015))
                                     ],
                                   ),
                                   child: Column(
@@ -169,9 +167,7 @@ class UploadNoteScreen extends StatelessWidget {
                                         c.fileName.value.isEmpty
                                             ? "Drag and drop your files here"
                                             : c.fileName.value,
-                                        style: TextStyle(
-                                            fontSize:
-                                                ResponsiveUtils.fontSize(0.04)),
+                                        style: AppStyles.baseTextLarge,
                                       ),
                                     ],
                                   ),
@@ -179,19 +175,14 @@ class UploadNoteScreen extends StatelessWidget {
                               ),
                               SizedBox(height: ResponsiveUtils.height(0.022)),
                               Padding(
-                                padding: ResponsiveUtils.paddingSymmetric(
-                                    horizontalPercent: 0.03,
-                                    verticalPercent: 0.01),
+                                padding: ResponsiveUtils.paddingSymmetric(horizontalPercent: 0.03, verticalPercent: 0.01),
                                 child: Row(
                                   children: [
                                     Expanded(
                                       flex: 2,
                                       child: Text(
                                         "My upLoad",
-                                        style: TextStyle(
-                                            fontSize:
-                                                ResponsiveUtils.fontSize(0.035),
-                                            color: Colors.white),
+                                        style: AppStyles.whiteNormalText,
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
@@ -219,7 +210,7 @@ class UploadNoteScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: ResponsiveUtils.height(0.032)),
-                      const Text("Set Price"),
+                      Text("Set Price",style: AppStyles.textStyleMediums,),
                       SliderTheme(
                         data: SliderTheme.of(context).copyWith(
                           activeTrackColor: Colors.black,
@@ -237,7 +228,7 @@ class UploadNoteScreen extends StatelessWidget {
                           onChanged: (val) => c.modulePrice.value = val,
                         ),
                       ),
-                      Text("Price: ₹${c.modulePrice.value.toInt()}"),
+                      Text("Price: ₹${c.modulePrice.value.toInt()}", style: AppStyles.textStyleMediums,),
                       SizedBox(height: ResponsiveUtils.height(0.01)),
                       // Display added modules
                       SizedBox(height: ResponsiveUtils.height(0.01)),

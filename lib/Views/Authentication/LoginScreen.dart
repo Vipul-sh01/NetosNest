@@ -31,11 +31,9 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor:
-          lightModeController.isLightMode.value ? Colors.white : Colors.black,
+      backgroundColor: lightModeController.isLightMode.value ? Colors.white : Colors.black,
       appBar: AppBar(
-        backgroundColor:
-            lightModeController.isLightMode.value ? Colors.white : Colors.black,
+        backgroundColor: lightModeController.isLightMode.value ? Colors.white : Colors.black,
         leading: BackWidget(
           onTap: () {},
           imagePath: AppConstants.backBlackIcon,

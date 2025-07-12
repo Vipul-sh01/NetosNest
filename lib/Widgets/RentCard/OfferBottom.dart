@@ -2,6 +2,7 @@ import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../Constents/AppStyles.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 
 class OfferBottom extends StatelessWidget {
@@ -22,10 +23,7 @@ class OfferBottom extends StatelessWidget {
           Expanded(
             child: Text(
               text ?? '',
-              style: TextStyle(
-                color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                fontSize: ResponsiveUtils.fontSize(0.045)
-              ),
+              style: AppStyles.themedLargeText,
               softWrap: true,
             ),
           ),

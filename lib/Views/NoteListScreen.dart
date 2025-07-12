@@ -58,7 +58,7 @@ class NoteListScreen extends StatelessWidget {
 
         final notes = noteController.notes;
         if (notes.isEmpty) {
-          return const Center(child: Text("No notes found"));
+          return Center(child: Text("No notes found", style: AppStyles.textStyleMediums,));
         }
 
         return SingleChildScrollView(

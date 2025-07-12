@@ -150,21 +150,6 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: ResponsiveUtils.paddingAll(0.02),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    "Offers Made",
-                    style: AppStyles.offerStyleLarge,
-                  ),
-                  SizedBox(height:  ResponsiveUtils.height(0.01)),
-                  NoteCard(),
-                  NoteCard(),
-                ],
-              ),
-            ),
           ],
         ),
       ),

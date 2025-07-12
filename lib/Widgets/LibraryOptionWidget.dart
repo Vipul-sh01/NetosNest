@@ -24,7 +24,7 @@ class LibraryOptionWidget extends StatelessWidget {
       ()=> GestureDetector(
         onTap: onTap,
         child: Container(
-          height: ResponsiveUtils.height(0.07),
+          height: ResponsiveUtils.height(0.06),
           width: ResponsiveUtils.width(0.30),
           padding: ResponsiveUtils.paddingOnly(leftPercent: 0.01, rightPercent: 0.01),
           decoration: BoxDecoration(
@@ -35,8 +35,8 @@ class LibraryOptionWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: ResponsiveUtils.iconSize(0.09),
-                height: ResponsiveUtils.iconSize(0.09),
+                width: ResponsiveUtils.iconSize(0.07),
+                height: ResponsiveUtils.iconSize(0.07),
                 child: SvgPicture.asset(
                   iconPath,
                   fit: BoxFit.contain,

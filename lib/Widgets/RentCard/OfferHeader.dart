@@ -1,3 +1,4 @@
+import 'package:NotesNest/Constents/AppStyles.dart';
 import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +23,7 @@ class OfferHeader extends StatelessWidget {
         children: [
           Text(
             courseName ?? "CSE 2005",
-            style: TextStyle(
-              color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-              fontSize: ResponsiveUtils.fontSize(0.03),
-            ),
+            style: AppStyles.themedNormalSmallText,
           ),
           SizedBox(width: ResponsiveUtils.width(0.02)),
           Container(
@@ -39,11 +37,7 @@ class OfferHeader extends StatelessWidget {
             child: Center(
               child: Text(
                  "SCOPE",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: ResponsiveUtils.fontSize(0.03),
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppStyles.blackBoldSmall,
               ),
             ),
           ),

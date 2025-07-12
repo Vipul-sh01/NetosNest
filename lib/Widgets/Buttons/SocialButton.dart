@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../Utility/ResponsiveUtils.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 
@@ -24,7 +25,7 @@ class SocialButton extends StatelessWidget {
       ()=> ElevatedButton.icon(
         onPressed: onPressed ?? () {},
         icon: Image.asset(asset, height: ResponsiveUtils.height(0.025)),
-        label: Text(text),
+        label: Text(text, style: GoogleFonts.poppins(),),
         style: ElevatedButton.styleFrom(
           backgroundColor: lightModeController.isLightMode.value ? Colors.white : Colors.black,
           minimumSize: Size(ResponsiveUtils.height(0.20), ResponsiveUtils.width(0.13)),

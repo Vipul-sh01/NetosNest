@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../Constents/AppConstents.dart';
+import '../../Constents/AppStyles.dart';
 import '../../Utility/ResponsiveUtils.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 
@@ -32,10 +33,7 @@ class ContainerRow extends StatelessWidget {
                 children: [
                   Text(
                     courseName ?? "CSE 2005",
-                    style: TextStyle(
-                      color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                      fontSize: ResponsiveUtils.fontSize(0.03),
-                    ),
+                    style: AppStyles.themedNormalSmallText,
                   ),
                   SizedBox(width: ResponsiveUtils.width(0.02)),
                   Container(
@@ -49,11 +47,7 @@ class ContainerRow extends StatelessWidget {
                     child: Center(
                       child: Text(
                         "SCOPE",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: ResponsiveUtils.fontSize(0.026),
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppStyles.blackBoldSmall
                       ),
                     ),
                   ),
@@ -62,10 +56,7 @@ class ContainerRow extends StatelessWidget {
               SizedBox(height: ResponsiveUtils.height(0.002)),
               Text(
                 text ?? '',
-                style: TextStyle(
-                  color: lightModeController.isLightMode.value ? Colors.white : Colors.black,
-                  fontSize: ResponsiveUtils.fontSize(0.045),
-                ),
+                style: AppStyles.themedLargeText,
                 softWrap: true,
               ),
             ],
@@ -88,9 +79,7 @@ class ContainerRow extends StatelessWidget {
                 children:  [
                   Text(
                     'Modules \nCovered',
-                    style: TextStyle(
-                      fontSize: ResponsiveUtils.fontSize(0.04),
-                    ),
+                    style: AppStyles.plainTextLarge,
                   ),
                 ],
               ),
@@ -98,7 +87,7 @@ class ContainerRow extends StatelessWidget {
               Text(
                 moduleText ?? '',
                 style: TextStyle(
-                  fontSize: ResponsiveUtils.fontSize(0.1),
+                  fontSize: ResponsiveUtils.fontSize(0.08),
                 ),
               ),
             ],

@@ -28,7 +28,7 @@ class AddUsers extends StatelessWidget {
     return Obx(
       () => Scaffold(
         backgroundColor:
-            lightModeController.isLightMode.value ? AppConstants.appBackGroundColor : Colors.white,
+            lightModeController.isLightMode.value ? Colors.white : Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: true,
           backgroundColor: lightModeController.isLightMode.value
@@ -81,24 +81,24 @@ class AddUsers extends StatelessWidget {
                   child: Column(
                     children: [
                       CustomTextField(
-                        label: "Name",
                         controller: authController.nameController,
-                        isDarkMode: lightModeController.isLightMode.value,
+                        label: "Name",
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       CustomTextField(
-                        label: "Room No",
                         controller: authController.roomNoController,
-                        isDarkMode: lightModeController.isLightMode.value,
+                        label: "Room Number",
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       CustomTextField(
-                        label: "Department",
                         controller: authController.departmentController,
-                        isDarkMode: lightModeController.isLightMode.value,
+                        label: "Department",
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       CustomTextField(
-                        label: "Block",
                         controller: authController.blockController,
-                        isDarkMode: lightModeController.isLightMode.value,
+                        label: "Block",
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       SizedBox(height: ResponsiveUtils.height(0.02)),
                       Obx(

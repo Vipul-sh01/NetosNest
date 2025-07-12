@@ -21,8 +21,8 @@ class ImageSectionWidget extends StatelessWidget {
           child: Row(
             children: [
               ImageContainer(imagePath: AppConstants.container1Image, index: 0, currentPage: controller.currentPage, color: AppConstants.topNotesIcons.withOpacity(0.2),),
-              ImageContainer(imagePath: AppConstants.container1Image, index: 1, currentPage: controller.currentPage, color: AppConstants.topNotesIcons.withOpacity(0.2),),
-              ImageContainer(imagePath: AppConstants.container1Image, index: 2, currentPage: controller.currentPage, color: AppConstants.topNotesIcons.withOpacity(0.2),),
+              ImageContainer(imagePath: AppConstants.container2Image, index: 1, currentPage: controller.currentPage, color: AppConstants.topNotesIcons.withOpacity(0.2),),
+              ImageContainer(imagePath: AppConstants.container3Image, index: 2, currentPage: controller.currentPage, color: AppConstants.topNotesIcons.withOpacity(0.2),),
             ],
           ),
         ),

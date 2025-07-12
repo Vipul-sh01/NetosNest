@@ -1,8 +1,8 @@
 import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../Constents/AppConstents.dart';
+import '../../Constents/AppStyles.dart';
 import '../ImageWidgets.dart';
 
 class SearchSort extends StatelessWidget {
@@ -87,12 +87,9 @@ class SearchSort extends StatelessWidget {
                       height: ResponsiveUtils.height(0.02),
                     ),
                     SizedBox(width: ResponsiveUtils.width(0.03)),
-                    const Text(
+                    Text(
                       "Sort",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppStyles.whiteNormalText,
                     ),
                   ],
                 ),

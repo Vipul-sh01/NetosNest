@@ -2,6 +2,8 @@ import 'package:NotesNest/Constents/AppConstents.dart';
 import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 
+import '../Constents/AppStyles.dart';
+
 class DetailItemWidget extends StatelessWidget {
   final String text;
   final String textOne;
@@ -22,34 +24,22 @@ class DetailItemWidget extends StatelessWidget {
         horizontal: ResponsiveUtils.width(0.02),
       ),
       decoration: BoxDecoration(
-        color: isLightMode ? AppConstants.searchColors : AppConstants.newlyNotes,
         borderRadius: ResponsiveUtils.circular(0.015),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
+        border: Border.all(
+          color: AppConstants.appBackGroundColor,
+          width: 0.7,
+        ),
       ),
       child: Row(
         children: [
           Text(
             text,
-            style: TextStyle(
-              fontSize: ResponsiveUtils.fontSize(0.03),
-              fontWeight: FontWeight.w600,
-              color: isLightMode ? Colors.black : Colors.white,
-            ),
+            style: AppStyles.semiBoldSmallText,
           ),
           Spacer(),
           Text(
             textOne,
-            style: TextStyle(
-              fontSize: ResponsiveUtils.fontSize(0.034),
-              fontWeight: FontWeight.bold,
-              color: isLightMode ? Colors.black : Colors.white70,
-            ),
+            style:AppStyles.semiBoldSmallText,
           ),
         ],
       ),

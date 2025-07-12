@@ -34,8 +34,7 @@ class FeedScreen extends StatelessWidget {
         backgroundColor: isLightMode ? Colors.white : Colors.black,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor:
-              isLightMode ? AppConstants.appBackGroundColor : Colors.white,
+          backgroundColor: isLightMode ? AppConstants.appBackGroundColor : Colors.white,
           title: Text(
             AppConstants.noteSwapTexts,
             style: AppStyles.textStyleLargeBold,
@@ -116,10 +115,8 @@ class FeedScreen extends StatelessWidget {
   Widget _buildSectionTitle(String title, Color color) {
     return Text(
       title,
-      style: TextStyle(
-        fontSize: ResponsiveUtils.fontSize(0.035),
-        fontWeight: FontWeight.bold,
-        color: color,
+      style: AppStyles.customBoldStyle(
+        AppStyles.lightModeController.isLightMode.value ? Colors.black.withOpacity(0.70) : Colors.white,
       ),
     );
   }

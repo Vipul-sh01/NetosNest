@@ -18,7 +18,6 @@ class AppConstants {
   static const String emailHints = "Email";
   static const String passwordHint = "Password";
   static const String signUpTitle = "Sign Up";
-  static const String signUpSubtitle = "Are you ready to become a legal eagle?\nLogin to the app and spread your wings in the courtroom.";
   static const String emailHint = "Email/Phone Number";
   static const String termsText = "I agree to The Terms and Conditions and Privacy Policy.";
   static const String createAccountText = "Create Account";
@@ -38,7 +37,8 @@ class AppConstants {
   // Asset Paths
   static const String splashLogo = "assets/r4.png";
   static const String container1Image = "assets/department1.png";
-  static const String container2Image = "assets/Designer28.png";
+  static const String container2Image = "assets/r5.png";
+  static const String container3Image = "assets/r6.png";
   static const String onboardingFirst = "assets/r3.png";
   static const String onboardingTwo = "assets/r2.png";
   static const String onboardingThree = "assets/r12.png";

@@ -15,13 +15,13 @@ class ButtonWidgets extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        height: ResponsiveUtils.height(0.06),
+        height: ResponsiveUtils.height(0.05),
         width: double.infinity,
         child: Container(
           alignment: Alignment.center,
           padding: ResponsiveUtils.paddingAll(0.01),
           decoration: BoxDecoration(
-            color: AppConstants.boxColor,
+            color: AppConstants.appBackGroundColor,
             borderRadius: ResponsiveUtils.circular(0.02),
           ),
           child: Text(

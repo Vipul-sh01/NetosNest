@@ -2,6 +2,7 @@ import 'package:NotesNest/Constents/AppConstents.dart';
 import 'package:NotesNest/Utility/ResponsiveUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../Constents/AppStyles.dart';
 import '../../ViewModels/DarkModeViewModels.dart';
 import '../RentCard/OfferBottom.dart';
 import '../RentCard/OfferHeader.dart';
@@ -108,11 +109,7 @@ class SearchCard extends StatelessWidget {
                       ),
                       child: Text(
                         "+2",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: ResponsiveUtils.fontSize(0.03),
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppStyles.whiteBoldSmall,
                       ),
                     ),
                   ),
