@@ -63,10 +63,12 @@ jobs:
         with:
           ruby-version: 3.1
 
-      - name: Install Fastlane and Plugins
+      - name: Set up fastlane with plugins
         run: |
-          gem install fastlane
-          fastlane add_plugin versioning_android
+          echo 'source "https://rubygems.org"' > Gemfile
+          echo 'gem "fastlane"' >> Gemfile
+          echo 'gem "fastlane-plugin-versioning_android"' >> Gemfile
+          bundle install
         working-directory: android
 
       - name: Make gradlew executable
@@ -79,5 +81,5 @@ jobs:
         run: |
           mkdir -p fastlane
           echo "$SUPPLY_JSON_KEY" | base64 --decode > fastlane/service_account_key.json
-          fastlane deploy_internal
+          bundle exec fastlane deploy_internal
         working-directory: android
