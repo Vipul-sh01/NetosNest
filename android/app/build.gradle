@@ -5,11 +5,24 @@ plugins {
     id "com.google.gms.google-services"
 }
 
-// ✅ Load keystore properties
+// ✅ FIXED: Load keystore.properties from the correct path
 def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file("android/keystore.properties")
+def keystorePropertiesFile = rootProject.file("keystore.properties")  // ✅ Correct
+def isSigningReady = false
+
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+    if (keystoreProperties['storeFile'] &&
+        keystoreProperties['storePassword'] &&
+        keystoreProperties['keyAlias'] &&
+        keystoreProperties['keyPassword']) {
+        isSigningReady = true
+    } else {
+        println("⚠️ keystore.properties exists but some required fields are missing.")
+    }
+} else {
+    println("⚠️ keystore.properties file not found at: ${keystorePropertiesFile}")
 }
 
 android {
@@ -36,13 +49,8 @@ android {
 
     signingConfigs {
         release {
-            // ✅ Use conditional logic only if all properties exist
-            if (keystoreProperties['storeFile'] && 
-                keystoreProperties['storePassword'] &&
-                keystoreProperties['keyAlias'] &&
-                keystoreProperties['keyPassword']) {
-
-                storeFile file(keystoreProperties['storeFile'])
+            if (isSigningReady) {
+                storeFile file("${rootDir}/${keystoreProperties['storeFile']}")
                 storePassword keystoreProperties['storePassword']
                 keyAlias keystoreProperties['keyAlias']
                 keyPassword keystoreProperties['keyPassword']
@@ -52,10 +60,12 @@ android {
 
     buildTypes {
         release {
-            // ✅ Only apply signing config if keystoreProperties were loaded
-            if (keystoreProperties['storeFile']) {
+            if (isSigningReady) {
                 signingConfig signingConfigs.release
+            } else {
+                println("⚠️ Release build will NOT be signed due to missing keystore config.")
             }
+
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
