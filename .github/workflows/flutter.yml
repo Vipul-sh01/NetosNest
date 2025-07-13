@@ -23,14 +23,14 @@ jobs:
       - name: Decode keystore
         run: |
           mkdir -p android/keystore
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/keystore/release-key.jks
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/keystore/release-key.jks
 
       - name: Create keystore.properties
         run: |
           echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/keystore.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
-          echo "storeFile=android/keystore/release-key.jks" >> android/keystore.properties
+          echo "storeFile=keystore/release-key.jks" >> android/keystore.properties
 
       - name: Decode google-services.json
         run: |
