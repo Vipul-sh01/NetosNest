@@ -43,13 +43,17 @@ jobs:
         run: |
           echo "${{ secrets.STRINGS_XML_BASE64 }}" | base64 --decode > android/app/src/main/res/values/strings.xml
 
-      - name: Create keystore.properties
-        working-directory: android
+      - name: Decode keystore
         run: |
-          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > keystore.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> keystore.properties
-          echo "storeFile=keystore/release-key.jks" >> keystore.properties
+          mkdir -p android/keystore
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/keystore/release-key.jks
+
+      - name: Create keystore.properties
+        run: |
+          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
+          echo "storeFile=keystore/release-key.jks" >> android/keystore.properties
 
       - name: Install Flutter dependencies
         run: flutter pub get
