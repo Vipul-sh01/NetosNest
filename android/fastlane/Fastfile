@@ -3,6 +3,17 @@ default_platform(:android)
 platform :android do
   desc "Deploy to Google Play Internal track"
   lane :deploy_internal do
+  
+    increment_version_code(
+      gradle_file_path: "../app/build.gradle"
+    )
+
+    increment_version_name(
+      bump_type: "patch", 
+      gradle_file_path: "../app/build.gradle"
+    )
+
+    # Build AAB
     gradle(task: "bundleRelease")
 
     upload_to_play_store(
@@ -15,11 +26,22 @@ platform :android do
 
   desc "Deploy to Google Play Production track with rollout"
   lane :deploy_production do
+   
+    increment_version_code(
+      gradle_file_path: "../app/build.gradle"
+    )
+    increment_version_name(
+      bump_type: "patch",
+      gradle_file_path: "../app/build.gradle"
+    )
+
+    # Build AAB
     gradle(task: "bundleRelease")
 
+    # Upload to production track
     upload_to_play_store(
       track: 'production',
-      rollout: 0.1, # 10% rollout
+      rollout: 0.1,
       json_key: './fastlane/service_account_key.json',
       package_name: 'com.notesnest',
       aab: '../build/app/outputs/bundle/release/app-release.aab'

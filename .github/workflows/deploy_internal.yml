@@ -6,7 +6,6 @@ on:
     types:
       - completed
 
-
 jobs:
   deploy_internal:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -64,8 +63,10 @@ jobs:
         with:
           ruby-version: 3.1
 
-      - name: Install Fastlane
-        run: gem install fastlane
+      - name: Install Fastlane and Plugins
+        run: |
+          gem install fastlane
+          fastlane add_plugin versioning_android
         working-directory: android
 
       - name: Make gradlew executable
